@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		634976302A8A13D500A071CA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6349762F2A8A13D500A071CA /* .gitignore */; };
 		63523EC52A8A0EE7002C677A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63523EC42A8A0EE7002C677A /* AppDelegate.swift */; };
 		63523EC72A8A0EE7002C677A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63523EC62A8A0EE7002C677A /* SceneDelegate.swift */; };
 		63523EC92A8A0EE7002C677A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63523EC82A8A0EE7002C677A /* ViewController.swift */; };
@@ -17,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		630C5E2B2A8A1049007F72CF /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
+		6349762F2A8A13D500A071CA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		63523EC12A8A0EE7002C677A /* AppleSnack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleSnack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63523EC42A8A0EE7002C677A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63523EC62A8A0EE7002C677A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +44,7 @@
 		63523EB82A8A0EE7002C677A = {
 			isa = PBXGroup;
 			children = (
-				630C5E2B2A8A1049007F72CF /* .gitignore.md */,
+				6349762F2A8A13D500A071CA /* .gitignore */,
 				63523EC32A8A0EE7002C677A /* AppleSnack */,
 				63523EC22A8A0EE7002C677A /* Products */,
 			);
@@ -130,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634976302A8A13D500A071CA /* .gitignore in Resources */,
 				63523ED42A8A0EE8002C677A /* LaunchScreen.storyboard in Resources */,
 				63523ED12A8A0EE8002C677A /* Assets.xcassets in Resources */,
 				63523ECC2A8A0EE7002C677A /* Main.storyboard in Resources */,
