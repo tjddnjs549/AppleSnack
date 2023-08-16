@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -16,20 +16,29 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var urlContextLabel: UILabel!
     
     var snackManager = SnackManager.shared
+    var mySnack: MySnack?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNaviBar()
-        
+        configureUI()
     }
     
-    // MARK: - Label 세팅
-    
-    func setup() {
-     
-    }
+    // MARK: - configureUI 세팅
 
+    func configureUI() {
+        
+        if let mySnack = self.mySnack {
+            self.title = "수정 페이지"
+            
+            guard let text = mySnack.title, let context = mySnack.text, let url = mySnack.assiURL else { return }
+            
+            titleLabel.text = text
+            contextLabel.text = context
+            urlLabel.text = url
+        }
+    }
     
     // MARK: - 네비게이션 바 설정
     

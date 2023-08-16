@@ -18,7 +18,7 @@ import UIKit
 
 
 
-class WriteViewController: UIViewController {
+final class WriteViewController: UIViewController {
 
     
     @IBOutlet weak var myScroll: UIScrollView!
