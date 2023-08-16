@@ -14,7 +14,6 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         
         makeImageLayer()
         makeTextViewLayer()
-        updateProgressView()
         
         if let image = UIImage(named: "cat") {
             profileImage.image = image
@@ -22,6 +21,12 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         
         blogTextView.delegate = self
         githubTextView.delegate = self
+        // 옵저버를 추가해서 업데이트 요청을 받음
+        NotificationCenter.default.addObserver(self, selector: #selector(requestProgressUpdate), name: NSNotification.Name( "RequestProgressUPdate"), object: nil)
+    }
+    
+    @objc func requestProgressUpdate() {
+        updateProgressView()
     }
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
