@@ -25,3 +25,17 @@ extension ProfileViewController {
         githubTextView.layer.cornerRadius = 10
     }
 }
+
+extension WriteViewController {
+    
+    
+//    func makeTextViewLayer() {
+//        blogTextView.layer.borderWidth = 1.0
+//        blogTextView.layer.borderColor = UIColor.gray.cgColor
+//        blogTextView.layer.cornerRadius = 10
+//
+//        githubTextView.layer.borderWidth = 1.0
+//        githubTextView.layer.borderColor = UIColor.gray.cgColor
+//        githubTextView.layer.cornerRadius = 10
+//    }
+}
