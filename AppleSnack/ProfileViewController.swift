@@ -14,7 +14,7 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         
         makeImageLayer()
         makeTextViewLayer()
-        
+        updateProgressView()
         if let image = UIImage(named: "cat") {
             profileImage.image = image
         }
