@@ -6,9 +6,8 @@
 //
 
 // 1. 텍스트 필드를 다 쓰소 다음을 누르면 아래로 커서 이동 (o)
-// 2. 키보드 높이만큼 화면도 올라가기
+// 2. 키보드 높이만큼 화면도 올라가기 (o)
 // 3. titleTextField(텍스트필드)가 비어있으면 저장 못하게 하기 -> alert창으로 알려주기 (o)
-// 4. url 주소누르면 바로 갈 수 있게 하기 (디테일페이지)
 // 5. 가져와서
 // 6. -> create
 // 7. -> update
@@ -17,9 +16,15 @@
 
 import UIKit
 
+
+
 class WriteViewController: UIViewController {
 
- 
+    
+    @IBOutlet weak var myScroll: UIScrollView!
+    
+    @IBOutlet weak var scrollView: UIView!
+    
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var contextTextView: UITextView!
@@ -31,18 +36,21 @@ class WriteViewController: UIViewController {
     
     var snackManager = SnackManager.shared
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupNaviBar()
         configureUI()
         setup()
+        scrollViewTapped()
+        scrollMoveKeyboard()
     }
-
     
     // MARK: - setup() 세팅 (테두리)
 
     
-    func setup() {
+    private func setup() {
         contextTextView.delegate = self
         urlTextView.delegate = self
         titleTextField.delegate = self
@@ -65,7 +73,7 @@ class WriteViewController: UIViewController {
     
     // MARK: - configureUI() (bar title , placeholder setting)
 
-    func configureUI() {
+    private func configureUI() {
         
         // 기존에 데이터가 있을때
         if let mySnack = self.mySnack {
@@ -76,7 +84,6 @@ class WriteViewController: UIViewController {
             titleTextField.text = text
             contextTextView.text = context
             urlTextView.text = url
-            //titleTextField.becomeFirstResponder()
             
         // 기존데이터가 없을때
         } else {
@@ -90,10 +97,11 @@ class WriteViewController: UIViewController {
         }
     }
     
+  
     
     // MARK: - 네비게이션 바 설정
     
-    func setupNaviBar() {
+    private func setupNaviBar() {
         
         self.title = "글 추가"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
@@ -111,7 +119,7 @@ class WriteViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
     }
     
-    // MARK: - 완료버튼 누르면 이벤트함수
+    // MARK: - 완료버튼 누르면 이벤트 함수
 
     @objc func doneButtonTapped() {
         
@@ -122,33 +130,29 @@ class WriteViewController: UIViewController {
             titleIsEmptyAlertMessage()
             return
         } else { // 빈값이 아니면 이동
-            let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
-            self.navigationController?.show(vc, sender: nil)
+            if let mySnack = self.mySnack {
+                mySnack.title = titleTextField
+                mySnack.text = contextTextView.text
+                mySnack.assiURL = urlTextView.text
+                snackManager.updateToDo(newSnackData: mySnack) {
+                    print("업데이트 완료")
+                    // 다시 전화면으로 돌아가기
+                    self.navigationController?.popViewController(animated: true)
+                }
+            } else {
+                let title = titleTextField
+                let text = contextTextView.text
+                let assiURL = urlTextView.text
+//                snackManager.saveToDoData(title: title, text: text, photo: <#T##Data?#>, categorie: <#T##String?#>, assiUrl: assiURL)
+                print("생성 완료")
+                //다시 전화면으로 돌아가기
+//                guard let viewControllerStack = self.navigationController?.viewControllers else { return }
+//                        for viewController in viewControllerStack {
+//                          if let "2번째View" = viewController as? "2번째ViewController" {
+//                                self.navigationController?.popToViewController("2번째View", animated: true)
+//                }
+            }
         }
-
-//        // 기존데이터가 있을때 ===> 기존 데이터 업데이트
-//        if let mySnack = self.mySnack {
-//            // 텍스트뷰에 저장되어 있는 메세지
-//
-//            mySnack.title = titleTextField
-//            mySnack.text = contextTextView.text
-//            mySnack.assiURL = urlTextView.text
-//
-//            mySnackMa Manager.updateToDo(newSnackData: MySnack, completion: @escaping () -> Void) {
-//                print("업데이트 완료")
-//                // 다시 전화면으로 돌아가기
-//                self.navigationController?.popViewController(animated: true)
-//            }
-//
-//        // 기존데이터가 없을때 ===> 새로운 데이터 생성
-//        } else {
-//            snackManager.saveToDoData(title: String?, text: String?, photo: Data?, categorie: String?, assiUrl: String?, completion: @escaping () -> Void){
-//                print("저장완료")
-//                // 다시 전화면으로 돌아가기
-//                self.navigationController?.popViewController(animated: true)
-//            }
-//        }
     }
     
     @objc func backButtonTapped() {
@@ -157,7 +161,7 @@ class WriteViewController: UIViewController {
     
     // MARK: - 제목 비어있으면 alert 창
 
-    func titleIsEmptyAlertMessage() {
+    private func titleIsEmptyAlertMessage() {
         
         let alert = UIAlertController(title: "제목이 비었습니다", message: "제목을 입력해야 완료가 됩니다", preferredStyle: .alert)
                 // UIAlertController를 통해 alert 창을 만듬/ preferredStyle: alert창이 어떻게 나오는지 설정
@@ -172,12 +176,54 @@ class WriteViewController: UIViewController {
                 present(alert, animated: true, completion: nil) // 보여지게 함
      }
     
-    // MARK: - 다른곳 터치 시 키보드 내림
+    // MARK: - scrollViewTapped() (스크롤뷰에서 다른 곳 터치 시 키보드 내림)
     
+    private func scrollViewTapped() {
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.touch))
+        recognizer.numberOfTapsRequired = 1
+        recognizer.numberOfTouchesRequired = 1
+        
+        scrollView.addGestureRecognizer(recognizer)
+     }
+    
+    @objc func touch() {
+        self.view.endEditing(true)
     }
+    
+    
+    // MARK: - scrollMoveKeyboard() (스크롤뷰에서 키보드 올림과 내림에서 화면 커짐)
+
+    
+    func scrollMoveKeyboard() {
+        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        else {
+          // if keyboard size is not available for some reason, dont do anything
+          return
+        }
+
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
+        myScroll.contentInset = contentInsets
+        myScroll.scrollIndicatorInsets = contentInsets
+      }
+
+      @objc func keyboardWillHide(notification: NSNotification) {
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+            
+        
+        // reset back the content inset to zero after keyboard is gone
+          myScroll.contentInset = contentInsets
+          myScroll.scrollIndicatorInsets = contentInsets
+      }
+   
+    
 }
 
 // MARK: - UITextViewDelegate
@@ -216,5 +262,5 @@ extension WriteViewController: UITextFieldDelegate {
         }
         return true
     }
-    
 }
+

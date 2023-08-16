@@ -27,11 +27,9 @@ class DetailViewController: UIViewController {
     // MARK: - Label 세팅
     
     func setup() {
-    
+     
     }
 
-    
-    
     
     // MARK: - 네비게이션 바 설정
     
@@ -69,4 +67,6 @@ class DetailViewController: UIViewController {
 //        }
     }
 
+    
 }
+
