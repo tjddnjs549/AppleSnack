@@ -118,6 +118,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="44" y="217"/>
+        </scene>
+        <!--ProfileViewController-->
+        <scene sceneID="KiH-wS-1sF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileViewController" referencedIdentifier="ProfileViewController" id="6RB-zI-KPa" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mbw-Tx-xqS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="905" y="183"/>
             <point key="canvasLocation" x="64.885496183206101" y="-34.507042253521128"/>
         </scene>
     </scenes>
