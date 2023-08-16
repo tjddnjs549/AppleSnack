@@ -64,24 +64,22 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var levelLabel: UILabel!
     
-    var dataArray: [Any] = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3] // 임시
+    var dataArray: [Any] = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2] // 임시
     var currentValue: Float = 0.0
     var level: Int = 0
     var maxValue: Float = 100
     func updateProgressView() {
         currentValue = Float(dataArray.count)
-        if currentValue > maxValue {
-            currentValue -= maxValue
-            print("\(currentValue)")
-            print("\(maxValue)")
+        let repeatedValue = currentValue.truncatingRemainder(dividingBy: maxValue)
+        if repeatedValue == 0 && currentValue != 0 {
             level += 1
             levelLabel.text = "Lv: \(level)"
         }
         
-        progressView.progress = currentValue / maxValue
-        currentValueLabel.text = "\(Int(currentValue))℃"
+        progressView.progress = repeatedValue / maxValue
+        currentValueLabel.text = "\(Int(repeatedValue))℃"
         let progressBarFrame = progressView.frame
-        let labelXPosition = progressBarFrame.origin.x + progressBarFrame.size.width * CGFloat(currentValue / maxValue)
+        let labelXPosition = progressBarFrame.origin.x + progressBarFrame.size.width * CGFloat(repeatedValue / maxValue)
         currentValueLabel.frame.origin.x = labelXPosition
     }
     
