@@ -34,14 +34,20 @@ final class WriteViewController: UIViewController {
     var snackManager = SnackManager.shared
     
     
+    var mainTitle: String?
+    var content: String?
+    var url: String?
+    var category: String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        snackManager.getToDoListFromCoreData()
         setupNaviBar()
         configureUI()
         setup()
         setupKeyboardEvent()
-
+        
     }
     
     
@@ -74,14 +80,14 @@ final class WriteViewController: UIViewController {
     private func configureUI() {
         
         // 기존에 데이터가 있을때
-        if let mySnack = self.mySnack {
+        if self.mySnack != nil {
             self.title = "수정 페이지"
             
-            guard let text = mySnack.title, let context = mySnack.text, let url = mySnack.assiURL else { return }
-      
-            titleTextField.text = text
-            contextTextView.text = context
+            guard let title = mainTitle, let content = content, let url = url else {return}
+            titleTextField.text = title
+            contextTextView.text = content
             urlTextView.text = url
+            // category
             
         // 기존데이터가 없을때
         } else {
@@ -138,22 +144,38 @@ final class WriteViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
             } else {
+                let photo: Data? = nil
+                let categorie = "클래스"
                 let title = titleTextField
                 let text = contextTextView.text
                 let assiURL = urlTextView.text
-//                snackManager.saveToDoData(title: title, text: text, photo: <#T##Data?#>, categorie: <#T##String?#>, assiUrl: assiURL)
-                print("생성 완료")
+                snackManager.saveToDoData(title: title, text: text, photo: photo, categorie: categorie, assiUrl: assiURL){
+                    print("생성 완료")
+                    print(title!)
+                }
+                let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
+                
+                vc.mainTitle = titleTextField
+                vc.content = text
+                vc.url = assiURL
+                vc.category = categorie
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+               
                 NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
-                //다시 전화면으로 돌아가기
+                
+//                바로 셀있는 뷰로 이동
 //                guard let viewControllerStack = self.navigationController?.viewControllers else { return }
-//                        for viewController in viewControllerStack {
-//                          if let "2번째View" = viewController as? "2번째ViewController" {
-//                                self.navigationController?.popToViewController("2번째View", animated: true)
+//
+//                for viewController in viewControllerStack {
+//                    if let vc = viewController as? TestViewController {
+//                        self.navigationController?.pushViewController(vc, animated: true)
+//                    }
 //                }
             }
         }
     }
-    
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }

@@ -47,9 +47,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="275" id="0N0-NI-mRw"/>
                                 </constraints>
-                                <mutableString key="text">2023-08-16 22:56:20.415771+0900 AppleSnack[19193:594042] [HardwareKeyboard] -[UIApplication getKeyboardDevicePropertiesForSenderID:shouldUpdate:usingSyntheticEvent:], failed to fetch device property for senderID (778835616971358209) use primary keyboard info instead.
+                                <string key="text">2023-08-16 22:56:20.415771+0900 AppleSnack[19193:594042] [HardwareKeyboard] -[UIApplication getKeyboardDevicePropertiesForSenderID:shouldUpdate:usingSyntheticEvent:], failed to fetch device property for senderID (778835616971358209) use primary keyboard info instead.
 2023-08-16 22:56:20.416720+0900 AppleSnack[19193:594042] [HardwareKeyboard] -[UIApplication getKeyboardDevicePropertiesForSenderID:shouldUpdate:usingSyntheticEvent:], failed to fetch device property for senderID (778835616971358209) use primary keyboard info instead.
-</mutableString>
+</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -111,7 +111,7 @@
         <!--Navigation Controller-->
         <scene sceneID="UxV-Em-rFj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HCe-rm-JIu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="toTestViewVc" automaticallyAdjustsScrollViewInsets="NO" id="HCe-rm-JIu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="p6B-1E-7or">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
