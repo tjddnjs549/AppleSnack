@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var myCollectionView: UICollectionView!
+    
     @IBOutlet weak var floatingStackView: UIStackView!
     @IBOutlet weak var floatingButton: UIButton!
     @IBOutlet weak var fixButton: UIButton!
@@ -32,8 +34,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
+    @IBAction func myCollectionViewbutton(_ sender: UIButton) {
+        print("hello")
+    }
+    
     @IBAction func floatingButtonAction(_ sender: UIButton) {
         
         if isShowFloating {
@@ -81,3 +86,4 @@ class ViewController: UIViewController {
         }
     }
 }
+
