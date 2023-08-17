@@ -35,7 +35,7 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
             profileImage.image = selectedImage
@@ -64,10 +64,12 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
     
     
     @IBOutlet weak var progressView: UIProgressView!
-        
+    
     @IBOutlet weak var currentValueLabel: UILabel!
     
     @IBOutlet weak var levelLabel: UILabel!
+    
+    @IBOutlet weak var currentValueLabelLeadingConstraint: NSLayoutConstraint!
     
     var dataArray: [Any] = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2] // 임시
     var currentValue: Float = 0.0
@@ -83,9 +85,9 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         
         progressView.progress = repeatedValue / maxValue
         currentValueLabel.text = "\(Int(repeatedValue))℃"
-        let progressBarFrame = progressView.frame
-        let labelXPosition = progressBarFrame.origin.x + progressBarFrame.size.width * CGFloat(repeatedValue / maxValue)
-        currentValueLabel.frame.origin.x = labelXPosition
+        let ratio = CGFloat(repeatedValue / maxValue)
+        
+        currentValueLabelLeadingConstraint.constant = progressView.bounds.width * ratio + 20
     }
     
     func toggleFieldState(_ field: UITextField, sender: UIBarButtonItem) {
