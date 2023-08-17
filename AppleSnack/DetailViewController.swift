@@ -27,7 +27,7 @@ final class DetailViewController: UIViewController {
     
     // MARK: - configureUI 세팅
 
-    func configureUI() {
+    private func configureUI() {
         
         if let mySnack = self.mySnack {
             self.title = "수정 페이지"
@@ -42,7 +42,7 @@ final class DetailViewController: UIViewController {
     
     // MARK: - 네비게이션 바 설정
     
-    func setupNaviBar() {
+    private func setupNaviBar() {
         
         self.title = "상세 페이지"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
