@@ -120,6 +120,7 @@
                             <constraint firstItem="DJj-tn-D1d" firstAttribute="top" secondItem="wZu-HX-gIJ" secondAttribute="bottom" constant="2" id="5gd-jW-AID"/>
                             <constraint firstItem="L2S-za-1m2" firstAttribute="top" secondItem="B4u-lr-mJJ" secondAttribute="bottom" constant="8" symbolic="YES" id="6jf-c9-ngY"/>
                             <constraint firstItem="VnG-6E-Kfs" firstAttribute="leading" secondItem="g7e-cr-cJA" secondAttribute="leading" constant="32" id="7B6-ym-LV9"/>
+                            <constraint firstItem="RcA-zK-F5Y" firstAttribute="leading" secondItem="B4u-lr-mJJ" secondAttribute="leading" id="8IU-Co-biv"/>
                             <constraint firstItem="fp0-3x-gvu" firstAttribute="leading" secondItem="B4u-lr-mJJ" secondAttribute="trailing" constant="20" id="9zF-RW-7U0"/>
                             <constraint firstItem="g7e-cr-cJA" firstAttribute="trailing" secondItem="fp0-3x-gvu" secondAttribute="trailing" constant="20" id="CK2-nz-CBX"/>
                             <constraint firstItem="DJj-tn-D1d" firstAttribute="leading" secondItem="wZu-HX-gIJ" secondAttribute="leading" id="D0O-La-Y6F"/>
@@ -137,7 +138,6 @@
                             <constraint firstItem="VnG-6E-Kfs" firstAttribute="top" secondItem="5Su-1G-xzf" secondAttribute="bottom" constant="8" symbolic="YES" id="bjg-Qq-DV0"/>
                             <constraint firstItem="g7e-cr-cJA" firstAttribute="trailing" secondItem="VnG-6E-Kfs" secondAttribute="trailing" constant="20" id="dhG-b8-OCW"/>
                             <constraint firstItem="kus-Qz-jNL" firstAttribute="leading" secondItem="g7e-cr-cJA" secondAttribute="leading" constant="46" id="fSH-f6-xIc"/>
-                            <constraint firstItem="RcA-zK-F5Y" firstAttribute="leading" secondItem="g7e-cr-cJA" secondAttribute="leading" constant="20" id="iB4-yy-P4I"/>
                             <constraint firstItem="wZu-HX-gIJ" firstAttribute="leading" secondItem="SI6-Vy-8Fi" secondAttribute="trailing" constant="16" id="kN4-Xu-dqE"/>
                             <constraint firstItem="5Su-1G-xzf" firstAttribute="leading" secondItem="g7e-cr-cJA" secondAttribute="leading" constant="46" id="kP8-Xr-V3f"/>
                             <constraint firstItem="g7e-cr-cJA" firstAttribute="trailing" secondItem="c87-Hv-Dh5" secondAttribute="trailing" id="nz3-LO-SNP"/>
@@ -154,7 +154,7 @@
                     <connections>
                         <outlet property="blogTextView" destination="bHb-Lo-UU8" id="1bn-Ce-dmP"/>
                         <outlet property="currentValueLabel" destination="RcA-zK-F5Y" id="6iC-cV-e3O"/>
-                        <outlet property="currentValueLabelLeadingConstraint" destination="iB4-yy-P4I" id="syW-g1-bgN"/>
+                        <outlet property="currentValueLabelLeadingConstraint" destination="8IU-Co-biv" id="ICg-8D-5nF"/>
                         <outlet property="emailField" destination="DJj-tn-D1d" id="yW4-Dn-c9a"/>
                         <outlet property="githubTextView" destination="VnG-6E-Kfs" id="AbA-68-oFD"/>
                         <outlet property="levelLabel" destination="fp0-3x-gvu" id="5eD-ZM-gfX"/>
@@ -170,7 +170,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="751.90839694656484" y="152.81690140845072"/>
+            <point key="canvasLocation" x="523" y="106"/>
         </scene>
     </scenes>
     <resources>

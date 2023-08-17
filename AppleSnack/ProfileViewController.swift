@@ -87,7 +87,7 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         currentValueLabel.text = "\(Int(repeatedValue))℃"
         let ratio = CGFloat(repeatedValue / maxValue)
         
-        currentValueLabelLeadingConstraint.constant = progressView.bounds.width * ratio + 20
+        currentValueLabelLeadingConstraint.constant = progressView.bounds.width * ratio
     }
     
     func toggleFieldState(_ field: UITextField, sender: UIBarButtonItem) {
