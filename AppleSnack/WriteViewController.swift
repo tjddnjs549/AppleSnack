@@ -66,7 +66,7 @@ final class WriteViewController: UIViewController {
         titleTextField.layer.borderColor = UIColor.lightGray.cgColor
         titleTextField.clearButtonMode = .always //오른쪽에 'x' 버튼
         titleTextField.returnKeyType = .next //리턴 버튼 수정
-        titleTextField.becomeFirstResponder()
+        
     }
     
     // MARK: - configureUI() (bar title , placeholder setting)
@@ -143,6 +143,7 @@ final class WriteViewController: UIViewController {
                 let assiURL = urlTextView.text
 //                snackManager.saveToDoData(title: title, text: text, photo: <#T##Data?#>, categorie: <#T##String?#>, assiUrl: assiURL)
                 print("생성 완료")
+                NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
                 //다시 전화면으로 돌아가기
 //                guard let viewControllerStack = self.navigationController?.viewControllers else { return }
 //                        for viewController in viewControllerStack {
@@ -205,7 +206,7 @@ final class WriteViewController: UIViewController {
         if textFieldBottomY > keyboardTopY {
             let textFieldTopY = convertedTextFieldFrame.origin.y
             // 노가다를 통해서 모든 기종에 적절한 크기를 설정함.
-            let newFrame = textFieldTopY - keyboardTopY/1.6
+            let newFrame = textFieldTopY - keyboardTopY/1.17
             view.frame.origin.y -= newFrame
         }
     }
