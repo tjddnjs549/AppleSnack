@@ -50,7 +50,7 @@
                                 <color key="tintColor" systemColor="systemGreenColor"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지식 온도" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2S-za-1m2">
-                                <rect key="frame" x="30.000000000000004" y="296" width="52.333333333333343" height="17"/>
+                                <rect key="frame" x="20.000000000000004" y="296" width="62.333333333333343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
@@ -129,7 +129,7 @@
                             <constraint firstItem="g7e-cr-cJA" firstAttribute="trailing" secondItem="kus-Qz-jNL" secondAttribute="trailing" constant="20" id="Im6-hd-kIu"/>
                             <constraint firstItem="DJj-tn-D1d" firstAttribute="trailing" secondItem="wZu-HX-gIJ" secondAttribute="trailing" id="J6B-NB-J5e"/>
                             <constraint firstItem="wZu-HX-gIJ" firstAttribute="top" secondItem="SI6-Vy-8Fi" secondAttribute="top" constant="24" id="JVM-Cp-21y"/>
-                            <constraint firstItem="L2S-za-1m2" firstAttribute="leading" secondItem="B4u-lr-mJJ" secondAttribute="leading" multiplier="150%" id="NSg-zx-BCk"/>
+                            <constraint firstItem="L2S-za-1m2" firstAttribute="leading" secondItem="B4u-lr-mJJ" secondAttribute="leading" id="NSg-zx-BCk"/>
                             <constraint firstItem="B4u-lr-mJJ" firstAttribute="leading" secondItem="g7e-cr-cJA" secondAttribute="leading" constant="20" id="RDn-6B-Qlv"/>
                             <constraint firstItem="c87-Hv-Dh5" firstAttribute="leading" secondItem="g7e-cr-cJA" secondAttribute="leading" id="ROv-7C-Fnp"/>
                             <constraint firstItem="bHb-Lo-UU8" firstAttribute="leading" secondItem="g7e-cr-cJA" secondAttribute="leading" constant="32" id="RZU-EO-5j0"/>
