@@ -20,10 +20,7 @@ import UIKit
 
 final class WriteViewController: UIViewController {
 
-    
-    @IBOutlet weak var myScroll: UIScrollView!
-    
-    @IBOutlet weak var scrollView: UIView!
+
     
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -43,9 +40,10 @@ final class WriteViewController: UIViewController {
         setupNaviBar()
         configureUI()
         setup()
-        scrollViewTapped()
-        scrollMoveKeyboard()
+        setupKeyboardEvent()
+
     }
+    
     
     // MARK: - setup() 세팅 (테두리)
 
@@ -178,51 +176,45 @@ final class WriteViewController: UIViewController {
     
     // MARK: - scrollViewTapped() (스크롤뷰에서 다른 곳 터치 시 키보드 내림)
     
-    private func scrollViewTapped() {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+           view.endEditing(true)
+       }
+    
+    
+    // MARK: - scrollMoveKeyboard() (스크롤뷰에서 키보드 올림과 내림에서의 화면)
 
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.touch))
-        recognizer.numberOfTapsRequired = 1
-        recognizer.numberOfTouchesRequired = 1
-        
-        scrollView.addGestureRecognizer(recognizer)
-     }
-    
-    @objc func touch() {
-        self.view.endEditing(true)
-    }
-    
-    
-    // MARK: - scrollMoveKeyboard() (스크롤뷰에서 키보드 올림과 내림에서 화면 커짐)
-
-    
-    func scrollMoveKeyboard() {
-        // Do any additional setup after loading the view.
+    func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        else {
-          // if keyboard size is not available for some reason, dont do anything
-          return
-        }
-
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
-        myScroll.contentInset = contentInsets
-        myScroll.scrollIndicatorInsets = contentInsets
-      }
-
-      @objc func keyboardWillHide(notification: NSNotification) {
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-            
+    @objc func keyboardWillShow(_ sender: Notification) {
+        // keyboardFrame: 현재 동작하고 있는 이벤트에서 키보드의 frame을 받아옴
+        // currentTextField: 현재 응답을 받고있는 UITextField를 알아냅니다.
+        guard let keyboardFrame = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+              let currentTextField = UIResponder.currentResponder as? UITextView else { return }
         
-        // reset back the content inset to zero after keyboard is gone
-          myScroll.contentInset = contentInsets
-          myScroll.scrollIndicatorInsets = contentInsets
-      }
-   
+        // Y축으로 키보드의 상단 위치
+        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
+        // 현재 선택한 텍스트 필드의 Frame 값
+        let convertedTextFieldFrame = view.convert(currentTextField.frame,
+                                                   from: currentTextField.superview)
+        // Y축으로 현재 텍스트 필드의 하단 위치
+        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
+        
+        // Y축으로 텍스트필드 하단 위치가 키보드 상단 위치보다 클 때 (즉, 텍스트필드가 키보드에 가려질 때가 되겠죠!)
+        if textFieldBottomY > keyboardTopY {
+            let textFieldTopY = convertedTextFieldFrame.origin.y
+            // 노가다를 통해서 모든 기종에 적절한 크기를 설정함.
+            let newFrame = textFieldTopY - keyboardTopY/1.6
+            view.frame.origin.y -= newFrame
+        }
+    }
+    
+    @objc func keyboardWillHide(_ sender: Notification) {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+    }
     
 }
 
@@ -238,6 +230,7 @@ extension WriteViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .black
         }
+        
     }
     
     // 입력이 끝났을때
@@ -248,13 +241,14 @@ extension WriteViewController: UITextViewDelegate {
             textView.textColor = .lightGray
         }
     }
+    
 }
 
 
 // MARK: - UITextFieldDelegate
 
 extension WriteViewController: UITextFieldDelegate {
-   
+    
     //제목에서 키보드 다음버튼 누르면 아래 텍스트뷰(내용칸)으로 커서 이동
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.titleTextField {
@@ -264,3 +258,19 @@ extension WriteViewController: UITextFieldDelegate {
     }
 }
 
+extension UIResponder {
+    
+    private struct Static {
+        static weak var responder: UIResponder?
+    }
+    
+    static var currentResponder: UIResponder? {
+        Static.responder = nil
+        UIApplication.shared.sendAction(#selector(UIResponder._trap), to: nil, from: nil, for: nil)
+        return Static.responder
+    }
+    
+    @objc private func _trap() {
+        Static.responder = self
+    }
+}
