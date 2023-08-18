@@ -15,6 +15,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var urlContextLabel: UILabel!
     
     var mySnack: MySnack?
+    var snackManager = SnackManager.shared
     
     // 데이터 변수 -> 나오는 걸 보기 위해 선언
     var mainTitle: String?
@@ -73,12 +74,13 @@ final class DetailViewController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //print(#function)
-        if segue.identifier == "toThirdVC" {
+        if segue.identifier == "ToWriteVC" {
             let writeVC = segue.destination as! WriteViewController
             writeVC.mainTitle = titleLabel.text
             writeVC.content = contextLabel.text
             writeVC.url = urlContextLabel.text
-            //writeVC.category.text = "클래스"
+            print(snackManager.getToDoListFromCoreData().count)
+            writeVC.category = "클래스"
             // 위처럼 하면 에러발생 (스토리보드 객체가 나중에 생김)
         }
     }
