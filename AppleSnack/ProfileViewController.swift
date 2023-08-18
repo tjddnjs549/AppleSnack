@@ -8,16 +8,23 @@
 import UIKit
 
 class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate {
-    
+    let profileManager = ProfileManager.shared
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let profileData = profileManager.getToDoListFromCoreData().first {
+            nameField.text = profileData.name
+            githubTextView.text = profileData.github
+            blogTextView.text = profileData.blog
+            
+            if let imageDate = profileData.photo, let image = UIImage(data: imageDate) {
+                profileImage.image = image
+            }
+        }
         
         makeImageLayer()
         makeTextViewLayer()
         updateProgressView()
-        if let image = UIImage(named: "cat") {
-            profileImage.image = image
-        }
         
         blogTextView.delegate = self
         githubTextView.delegate = self
@@ -35,10 +42,12 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
             profileImage.image = selectedImage
+            
+            profileManager.saveToDoData(name: nameField.text, photo: selectedImage.pngData(), git: githubTextView.text, blog: blogTextView.text) {}
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -49,8 +58,19 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         toggleTextViewState(blogTextView, sender: sender)
         toggleTextViewState(githubTextView, sender: sender)
         profileImage.isUserInteractionEnabled.toggle()
+        
+        if let profileData = profileManager.getToDoListFromCoreData().first {
+            profileData.name = nameField.text
+            profileData.github = githubTextView.text
+            profileData.blog = blogTextView.text
+            
+            if let newImage = profileImage.image {
+                profileData.photo = newImage.pngData()
+            }
+            
+            profileManager.updateToDo(newToDoData: profileData) {}
+        }
     }
-    
     
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -64,15 +84,18 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
     
     
     @IBOutlet weak var progressView: UIProgressView!
-        
+    
     @IBOutlet weak var currentValueLabel: UILabel!
     
     @IBOutlet weak var levelLabel: UILabel!
+    
+    @IBOutlet weak var currentValueLabelLeadingConstraint: NSLayoutConstraint!
     
     var dataArray: [Any] = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2] // 임시
     var currentValue: Float = 0.0
     var level: Int = 0
     var maxValue: Float = 100
+    
     func updateProgressView() {
         currentValue = Float(dataArray.count)
         let repeatedValue = currentValue.truncatingRemainder(dividingBy: maxValue)
@@ -83,9 +106,9 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         
         progressView.progress = repeatedValue / maxValue
         currentValueLabel.text = "\(Int(repeatedValue))℃"
-        let progressBarFrame = progressView.frame
-        let labelXPosition = progressBarFrame.origin.x + progressBarFrame.size.width * CGFloat(repeatedValue / maxValue)
-        currentValueLabel.frame.origin.x = labelXPosition
+        let ratio = CGFloat(repeatedValue / maxValue)
+        
+        currentValueLabelLeadingConstraint.constant = progressView.bounds.width * ratio
     }
     
     func toggleFieldState(_ field: UITextField, sender: UIBarButtonItem) {
