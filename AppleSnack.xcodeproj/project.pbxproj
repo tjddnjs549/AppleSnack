@@ -28,6 +28,7 @@
 		D14C85712A8BC79600A9216D /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14C85702A8BC79600A9216D /* Help.swift */; };
 		D1AB9A402A8A3D9A00EB4C56 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AB9A3F2A8A3D9A00EB4C56 /* ProfileViewController.swift */; };
 		D1AB9A422A8A3EAC00EB4C56 /* ProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1AB9A412A8A3EAC00EB4C56 /* ProfileView.storyboard */; };
+		E50EA25E2A8DF1EA00F8FA13 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50EA25D2A8DF1EA00F8FA13 /* MainCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		D14C85702A8BC79600A9216D /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		D1AB9A3F2A8A3D9A00EB4C56 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D1AB9A412A8A3EAC00EB4C56 /* ProfileView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileView.storyboard; sourceTree = "<group>"; };
+		E50EA25D2A8DF1EA00F8FA13 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				520F92002A8A4288005C8897 /* Model(profile) */,
 				520F91FF2A8A408A005C8897 /* Model(snack) */,
 				63523ECA2A8A0EE7002C677A /* Main.storyboard */,
+				E50EA25D2A8DF1EA00F8FA13 /* MainCollectionViewCell.swift */,
 				63441B932A8A367D0017994F /* DetailViewStoryboard.storyboard */,
 				632D14122A8CA26E0008BB97 /* WriteViewStoryboard.storyboard */,
 				D1AB9A412A8A3EAC00EB4C56 /* ProfileView.storyboard */,
@@ -206,6 +209,7 @@
 				520F91FE2A8A407E005C8897 /* MySnack+CoreDataProperties.swift in Sources */,
 				63441B962A8A3C2C0017994F /* DetailViewController.swift in Sources */,
 				D1AB9A402A8A3D9A00EB4C56 /* ProfileViewController.swift in Sources */,
+				E50EA25E2A8DF1EA00F8FA13 /* MainCollectionViewCell.swift in Sources */,
 				63523EC92A8A0EE7002C677A /* ViewController.swift in Sources */,
 				520F92022A8A42A7005C8897 /* SnackCore.swift in Sources */,
 				D14C85712A8BC79600A9216D /* Help.swift in Sources */,
