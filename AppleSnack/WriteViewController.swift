@@ -138,11 +138,11 @@ final class WriteViewController: UIViewController {
                 mySnack.assiURL = urlTextView.text
                 snackManager.updateToDo(newSnackData: mySnack) {
                     print("업데이트 완료")
-                    // 다시 전화면으로 돌아가기
+                    // 다시 전화면으로 돌아가기 or 2번 페이지로 가기(수정 필요❗️)
                     self.navigationController?.popViewController(animated: true)
                 }
             } else {
-                snackManager.saveToDoData(title: titleTextField, text: contextTextView.text, photo: nil, categorie: "클래스", assiUrl: urlTextView.text){
+                snackManager.saveToDoData(title: titleTextField, text: contextTextView.text, photo: nil, categorie: "클래스", assiUrl: urlTextView.text) {
                     print("생성 완료")
                     print(titleTextField!)
                 }
