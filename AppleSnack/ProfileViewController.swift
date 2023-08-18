@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate {
+class ProfileViewController:UIViewController, UINavigationControllerDelegate {
     let profileManager = ProfileManager.shared
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,22 +34,6 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
     
     @objc func requestProgressUpdate() {
         updateProgressView()
-    }
-    
-    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            profileImage.image = selectedImage
-            
-            profileManager.saveToDoData(name: nameField.text, photo: selectedImage.pngData(), git: githubTextView.text, blog: blogTextView.text) {}
-        }
-        picker.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
@@ -129,12 +113,5 @@ class ProfileViewController:UIViewController, UIImagePickerControllerDelegate, U
         } else {
             sender.title = "수정"
         }
-    }
-    
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        if UIApplication.shared.canOpenURL(URL) {
-            UIApplication.shared.open(URL, options: [:], completionHandler: nil)
-        }
-        return false
     }
 }
