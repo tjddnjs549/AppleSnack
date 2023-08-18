@@ -17,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="g0l-Ie-h5F">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="g0l-Ie-h5F">
                                 <rect key="frame" x="10" y="143" width="373" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brB-wA-wMk">
-                                        <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="33.666666666666664"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="38.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="입력하세요!" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TF8-DJ-FHC">
-                                        <rect key="frame" x="0.0" y="43.666666666666657" width="373" height="36.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="45.333333333333343" width="373" height="34.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -54,17 +54,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fRI-nw-BYS">
-                                <rect key="frame" x="10" y="568" width="373" height="123.66666666666663"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fRI-nw-BYS">
+                                <rect key="frame" x="10" y="568" width="373" height="124"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL 주소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12W-kH-lrH">
-                                        <rect key="frame" x="0.0" y="0.0" width="108.66666666666667" height="33.666666666666664"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도움되는 URL 주소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12W-kH-lrH">
+                                        <rect key="frame" x="0.0" y="0.0" width="226.33333333333334" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consrep" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="p78-6w-PyT">
-                                        <rect key="frame" x="0.0" y="43.666666666666629" width="373" height="80"/>
+                                        <rect key="frame" x="0.0" y="44" width="373" height="80"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="dyN-s3-6ek"/>
@@ -76,7 +76,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="p78-6w-PyT" secondAttribute="trailing" id="CYG-Kf-8YX"/>
-                                    <constraint firstItem="p78-6w-PyT" firstAttribute="top" secondItem="12W-kH-lrH" secondAttribute="bottom" constant="10" id="EZv-dj-gG1"/>
                                     <constraint firstAttribute="bottom" secondItem="p78-6w-PyT" secondAttribute="bottom" id="RA7-Zw-WtR"/>
                                     <constraint firstItem="p78-6w-PyT" firstAttribute="leading" secondItem="fRI-nw-BYS" secondAttribute="leading" id="X9V-73-teX"/>
                                 </constraints>

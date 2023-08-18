@@ -21,28 +21,34 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="1397"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Mt-Ku-lCo">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="349.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="457.33333333333331"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁ" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlF-fL-AN1">
-                                                <rect key="frame" x="10" y="60" width="342.66666666666669" height="86"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                                <rect key="frame" x="10" y="59.999999999999993" width="353" height="81.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㅇㄴ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Bx-r3-Tms">
-                                                <rect key="frame" x="10" y="156" width="363.33333333333331" height="48"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㅇㄴ" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Bx-r3-Tms">
+                                                <rect key="frame" x="10" y="151.33333333333334" width="358.33333333333331" height="43"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES" image="YES" staticText="YES" header="YES"/>
+                                                </accessibility>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL 주소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEW-B9-tLV">
-                                                <rect key="frame" x="10" y="243.99999999999997" width="373" height="33.666666666666657"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                <rect key="frame" x="10" y="354.33333333333331" width="373" height="31.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.naver.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQl-ar-bj5">
-                                                <rect key="frame" x="9.9999999999999929" y="287.66666666666669" width="126.33333333333331" height="21.666666666666686"/>
+                                                <rect key="frame" x="9.9999999999999929" y="395.66666666666669" width="126.33333333333331" height="21.666666666666686"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -51,7 +57,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="tEW-B9-tLV" firstAttribute="leading" secondItem="0Mt-Ku-lCo" secondAttribute="leading" constant="10" id="51X-K6-Mm1"/>
-                                            <constraint firstItem="tEW-B9-tLV" firstAttribute="top" secondItem="4Bx-r3-Tms" secondAttribute="bottom" constant="40" id="ETp-Zk-Uhx"/>
+                                            <constraint firstItem="tEW-B9-tLV" firstAttribute="top" secondItem="4Bx-r3-Tms" secondAttribute="bottom" constant="160" id="ETp-Zk-Uhx"/>
                                             <constraint firstItem="XQl-ar-bj5" firstAttribute="top" secondItem="tEW-B9-tLV" secondAttribute="bottom" constant="10" id="H6H-RV-cCU"/>
                                             <constraint firstItem="qlF-fL-AN1" firstAttribute="leading" secondItem="0Mt-Ku-lCo" secondAttribute="leading" constant="10" id="PtR-Nf-pC9"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Bx-r3-Tms" secondAttribute="trailing" constant="10" id="Qt9-xo-kYo"/>

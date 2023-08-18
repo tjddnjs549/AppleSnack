@@ -28,7 +28,7 @@ final class SnackManager {
                 snackData.categorie = categorie
                 snackData.assiURL = assiUrl
                 snackData.date = Date()
-
+                print("저장 완료")
                 appDelegate?.saveContext()
             }
         }
@@ -71,6 +71,7 @@ final class SnackManager {
                 if var targetSnack = fetchedSnack.first {
                     targetSnack = newSnackData
                     appDelegate?.saveContext()
+                    print("업데이트 완료")
                 }
                 completion()
             } catch {

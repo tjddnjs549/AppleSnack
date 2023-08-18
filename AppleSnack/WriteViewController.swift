@@ -42,7 +42,6 @@ final class WriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        snackManager.getToDoListFromCoreData()
         setupNaviBar()
         configureUI()
         setup()
@@ -78,15 +77,14 @@ final class WriteViewController: UIViewController {
     // MARK: - configureUI() (bar title , placeholder setting)
 
     private func configureUI() {
-        
+        snackManager.getToDoListFromCoreData()
         // 기존에 데이터가 있을때
-        if self.mySnack != nil {
+        if let mySnack = self.mySnack {
             self.title = "수정 페이지"
-            
-            guard let title = mainTitle, let content = content, let url = url else {return}
-            titleTextField.text = title
-            contextTextView.text = content
-            urlTextView.text = url
+        
+            titleTextField.text = mySnack.title
+            contextTextView.text = mySnack.text
+            urlTextView.text = mySnack.assiURL
             // category
             
         // 기존데이터가 없을때
@@ -144,26 +142,21 @@ final class WriteViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
             } else {
-                let photo: Data? = nil
-                let categorie = "클래스"
-                let title = titleTextField
-                let text = contextTextView.text
-                let assiURL = urlTextView.text
-                snackManager.saveToDoData(title: title, text: text, photo: photo, categorie: categorie, assiUrl: assiURL){
+                snackManager.saveToDoData(title: titleTextField, text: contextTextView.text, photo: nil, categorie: "클래스", assiUrl: urlTextView.text){
                     print("생성 완료")
-                    print(title!)
+                    print(titleTextField!)
                 }
+                //세이브되면 디테일 페이지 이동
                 let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
                 
                 vc.mainTitle = titleTextField
-                vc.content = text
-                vc.url = assiURL
-                vc.category = categorie
+                vc.content = contextTextView.text
+                vc.url = urlTextView.text
+                vc.category = "클래스"
+                NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-               
-                NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
                 
 //                바로 셀있는 뷰로 이동
 //                guard let viewControllerStack = self.navigationController?.viewControllers else { return }
@@ -204,7 +197,7 @@ final class WriteViewController: UIViewController {
        }
     
     
-    // MARK: - scrollMoveKeyboard() (스크롤뷰에서 키보드 올림과 내림에서의 화면)
+    // MARK: - setupKeyboardEvent() (뷰에서 키보드 올림과 내림에서의 화면)
 
     func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -214,19 +207,19 @@ final class WriteViewController: UIViewController {
         // keyboardFrame: 현재 동작하고 있는 이벤트에서 키보드의 frame을 받아옴
         // currentTextField: 현재 응답을 받고있는 UITextField를 알아냅니다.
         guard let keyboardFrame = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-              let currentTextField = UIResponder.currentResponder as? UITextView else { return }
+              let currentTextView = UIResponder.currentResponder as? UITextView else { return }
         
         // Y축으로 키보드의 상단 위치
         let keyboardTopY = keyboardFrame.cgRectValue.origin.y
         // 현재 선택한 텍스트 필드의 Frame 값
-        let convertedTextFieldFrame = view.convert(currentTextField.frame,
-                                                   from: currentTextField.superview)
+        let convertedTextViewFrame = view.convert(currentTextView.frame,
+                                                   from: currentTextView.superview)
         // Y축으로 현재 텍스트 필드의 하단 위치
-        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
+        let textFieldBottomY = convertedTextViewFrame.origin.y + convertedTextViewFrame.size.height
         
         // Y축으로 텍스트필드 하단 위치가 키보드 상단 위치보다 클 때 (즉, 텍스트필드가 키보드에 가려질 때가 되겠죠!)
         if textFieldBottomY > keyboardTopY {
-            let textFieldTopY = convertedTextFieldFrame.origin.y
+            let textFieldTopY = convertedTextViewFrame.origin.y
             // 노가다를 통해서 모든 기종에 적절한 크기를 설정함.
             let newFrame = textFieldTopY - keyboardTopY/1.17
             view.frame.origin.y -= newFrame
@@ -289,11 +282,11 @@ extension UIResponder {
     
     static var currentResponder: UIResponder? {
         Static.responder = nil
-        UIApplication.shared.sendAction(#selector(UIResponder._trap), to: nil, from: nil, for: nil)
+        UIApplication.shared.sendAction(#selector(UIResponder.trap), to: nil, from: nil, for: nil)
         return Static.responder
     }
     
-    @objc private func _trap() {
+    @objc private func trap() {
         Static.responder = self
     }
 }

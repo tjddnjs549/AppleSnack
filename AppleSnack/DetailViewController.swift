@@ -14,9 +14,9 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var contextLabel: UILabel!
     @IBOutlet weak var urlContextLabel: UILabel!
     
-    var snackManager = SnackManager.shared
     var mySnack: MySnack?
     
+    // 데이터 변수 -> 나오는 걸 보기 위해 선언
     var mainTitle: String?
     var content: String?
     var url: String?
@@ -27,7 +27,7 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         setupNaviBar()
         configureUI()
-        snackManager.getToDoListFromCoreData()
+        contextLabel.textAlignment = .justified
     }
     
     // MARK: - configureUI 세팅
@@ -69,19 +69,17 @@ final class DetailViewController: UIViewController {
     
     @objc func doneButtonTapped() {
         
-        let titleText = titleLabel.text
-        let content = contextLabel.text
-        let urlContext = urlContextLabel.text
+        //수정 페이지 보냄
         let storyboard = UIStoryboard(name: "WriteViewStoryboard", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "WriteViewStoryboard") as! WriteViewController
         
-        vc.mainTitle = titleText
-        vc.content = content
-        vc.url = urlContext
+        vc.mainTitle = titleLabel.text
+        vc.content = contextLabel.text
+        vc.url = urlContextLabel.text
         //vc.category = categorie
         
         
-        self.navigationController?.show(vc, sender: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func backButtonTapped() {
