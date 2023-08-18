@@ -20,10 +20,7 @@ import UIKit
 
 final class WriteViewController: UIViewController {
 
-    
-    @IBOutlet weak var myScroll: UIScrollView!
-    
-    @IBOutlet weak var scrollView: UIView!
+
     
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -37,15 +34,21 @@ final class WriteViewController: UIViewController {
     var snackManager = SnackManager.shared
     
     
+    var mainTitle: String?
+    var content: String?
+    var url: String?
+    var category: String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNaviBar()
         configureUI()
         setup()
-        scrollViewTapped()
-        scrollMoveKeyboard()
+        setupKeyboardEvent()
+        
     }
+    
     
     // MARK: - setup() 세팅 (테두리)
 
@@ -68,22 +71,21 @@ final class WriteViewController: UIViewController {
         titleTextField.layer.borderColor = UIColor.lightGray.cgColor
         titleTextField.clearButtonMode = .always //오른쪽에 'x' 버튼
         titleTextField.returnKeyType = .next //리턴 버튼 수정
-        titleTextField.becomeFirstResponder()
+        
     }
     
     // MARK: - configureUI() (bar title , placeholder setting)
 
     private func configureUI() {
-        
+        snackManager.getToDoListFromCoreData()
         // 기존에 데이터가 있을때
         if let mySnack = self.mySnack {
             self.title = "수정 페이지"
-            
-            guard let text = mySnack.title, let context = mySnack.text, let url = mySnack.assiURL else { return }
-      
-            titleTextField.text = text
-            contextTextView.text = context
-            urlTextView.text = url
+        
+            titleTextField.text = mySnack.title
+            contextTextView.text = mySnack.text
+            urlTextView.text = mySnack.assiURL
+            // category
             
         // 기존데이터가 없을때
         } else {
@@ -140,21 +142,33 @@ final class WriteViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
             } else {
-                let title = titleTextField
-                let text = contextTextView.text
-                let assiURL = urlTextView.text
-//                snackManager.saveToDoData(title: title, text: text, photo: <#T##Data?#>, categorie: <#T##String?#>, assiUrl: assiURL)
-                print("생성 완료")
-                //다시 전화면으로 돌아가기
+                snackManager.saveToDoData(title: titleTextField, text: contextTextView.text, photo: nil, categorie: "클래스", assiUrl: urlTextView.text){
+                    print("생성 완료")
+                    print(titleTextField!)
+                }
+                //세이브되면 디테일 페이지 이동
+                let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
+                
+                vc.mainTitle = titleTextField
+                vc.content = contextTextView.text
+                vc.url = urlTextView.text
+                vc.category = "클래스"
+                NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                
+//                바로 셀있는 뷰로 이동
 //                guard let viewControllerStack = self.navigationController?.viewControllers else { return }
-//                        for viewController in viewControllerStack {
-//                          if let "2번째View" = viewController as? "2번째ViewController" {
-//                                self.navigationController?.popToViewController("2번째View", animated: true)
+//
+//                for viewController in viewControllerStack {
+//                    if let vc = viewController as? TestViewController {
+//                        self.navigationController?.pushViewController(vc, animated: true)
+//                    }
 //                }
             }
         }
     }
-    
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -178,51 +192,45 @@ final class WriteViewController: UIViewController {
     
     // MARK: - scrollViewTapped() (스크롤뷰에서 다른 곳 터치 시 키보드 내림)
     
-    private func scrollViewTapped() {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+           view.endEditing(true)
+       }
+    
+    
+    // MARK: - setupKeyboardEvent() (뷰에서 키보드 올림과 내림에서의 화면)
 
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.touch))
-        recognizer.numberOfTapsRequired = 1
-        recognizer.numberOfTouchesRequired = 1
-        
-        scrollView.addGestureRecognizer(recognizer)
-     }
-    
-    @objc func touch() {
-        self.view.endEditing(true)
-    }
-    
-    
-    // MARK: - scrollMoveKeyboard() (스크롤뷰에서 키보드 올림과 내림에서 화면 커짐)
-
-    
-    func scrollMoveKeyboard() {
-        // Do any additional setup after loading the view.
+    func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        else {
-          // if keyboard size is not available for some reason, dont do anything
-          return
-        }
-
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
-        myScroll.contentInset = contentInsets
-        myScroll.scrollIndicatorInsets = contentInsets
-      }
-
-      @objc func keyboardWillHide(notification: NSNotification) {
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-            
+    @objc func keyboardWillShow(_ sender: Notification) {
+        // keyboardFrame: 현재 동작하고 있는 이벤트에서 키보드의 frame을 받아옴
+        // currentTextField: 현재 응답을 받고있는 UITextField를 알아냅니다.
+        guard let keyboardFrame = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+              let currentTextView = UIResponder.currentResponder as? UITextView else { return }
         
-        // reset back the content inset to zero after keyboard is gone
-          myScroll.contentInset = contentInsets
-          myScroll.scrollIndicatorInsets = contentInsets
-      }
-   
+        // Y축으로 키보드의 상단 위치
+        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
+        // 현재 선택한 텍스트 필드의 Frame 값
+        let convertedTextViewFrame = view.convert(currentTextView.frame,
+                                                   from: currentTextView.superview)
+        // Y축으로 현재 텍스트 필드의 하단 위치
+        let textFieldBottomY = convertedTextViewFrame.origin.y + convertedTextViewFrame.size.height
+        
+        // Y축으로 텍스트필드 하단 위치가 키보드 상단 위치보다 클 때 (즉, 텍스트필드가 키보드에 가려질 때가 되겠죠!)
+        if textFieldBottomY > keyboardTopY {
+            let textFieldTopY = convertedTextViewFrame.origin.y
+            // 노가다를 통해서 모든 기종에 적절한 크기를 설정함.
+            let newFrame = textFieldTopY - keyboardTopY/1.17
+            view.frame.origin.y -= newFrame
+        }
+    }
+    
+    @objc func keyboardWillHide(_ sender: Notification) {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+    }
     
 }
 
@@ -238,6 +246,7 @@ extension WriteViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .black
         }
+        
     }
     
     // 입력이 끝났을때
@@ -248,13 +257,14 @@ extension WriteViewController: UITextViewDelegate {
             textView.textColor = .lightGray
         }
     }
+    
 }
 
 
 // MARK: - UITextFieldDelegate
 
 extension WriteViewController: UITextFieldDelegate {
-   
+    
     //제목에서 키보드 다음버튼 누르면 아래 텍스트뷰(내용칸)으로 커서 이동
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.titleTextField {
@@ -264,3 +274,19 @@ extension WriteViewController: UITextFieldDelegate {
     }
 }
 
+extension UIResponder {
+    
+    private struct Static {
+        static weak var responder: UIResponder?
+    }
+    
+    static var currentResponder: UIResponder? {
+        Static.responder = nil
+        UIApplication.shared.sendAction(#selector(UIResponder.trap), to: nil, from: nil, for: nil)
+        return Static.responder
+    }
+    
+    @objc private func trap() {
+        Static.responder = self
+    }
+}
