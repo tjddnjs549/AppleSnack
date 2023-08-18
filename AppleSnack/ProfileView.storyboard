@@ -125,7 +125,6 @@
                             <constraint firstItem="g7e-cr-cJA" firstAttribute="trailing" secondItem="fp0-3x-gvu" secondAttribute="trailing" constant="20" id="CK2-nz-CBX"/>
                             <constraint firstItem="DJj-tn-D1d" firstAttribute="leading" secondItem="wZu-HX-gIJ" secondAttribute="leading" id="D0O-La-Y6F"/>
                             <constraint firstItem="SI6-Vy-8Fi" firstAttribute="top" secondItem="c87-Hv-Dh5" secondAttribute="bottom" constant="32" id="D1B-S3-SCV"/>
-                            <constraint firstItem="kus-Qz-jNL" firstAttribute="top" secondItem="L2S-za-1m2" secondAttribute="bottom" constant="20" id="HVt-ld-vXc"/>
                             <constraint firstItem="g7e-cr-cJA" firstAttribute="trailing" secondItem="kus-Qz-jNL" secondAttribute="trailing" constant="20" id="Im6-hd-kIu"/>
                             <constraint firstItem="DJj-tn-D1d" firstAttribute="trailing" secondItem="wZu-HX-gIJ" secondAttribute="trailing" id="J6B-NB-J5e"/>
                             <constraint firstItem="wZu-HX-gIJ" firstAttribute="top" secondItem="SI6-Vy-8Fi" secondAttribute="top" constant="24" id="JVM-Cp-21y"/>
@@ -147,6 +146,7 @@
                             <constraint firstItem="fp0-3x-gvu" firstAttribute="top" secondItem="SI6-Vy-8Fi" secondAttribute="bottom" constant="24" id="tMF-XF-5LZ"/>
                             <constraint firstItem="g7e-cr-cJA" firstAttribute="trailing" secondItem="wZu-HX-gIJ" secondAttribute="trailing" constant="20" id="vns-hP-v16"/>
                             <constraint firstItem="g7e-cr-cJA" firstAttribute="trailing" secondItem="L2S-za-1m2" secondAttribute="trailing" constant="310.67000000000002" id="xPj-H3-aJC"/>
+                            <constraint firstItem="kus-Qz-jNL" firstAttribute="top" secondItem="L2S-za-1m2" secondAttribute="bottom" constant="20" id="y1s-Qc-zfG"/>
                             <constraint firstItem="c87-Hv-Dh5" firstAttribute="top" secondItem="g7e-cr-cJA" secondAttribute="top" id="ybA-hB-hcJ"/>
                             <constraint firstItem="bHb-Lo-UU8" firstAttribute="top" secondItem="kus-Qz-jNL" secondAttribute="bottom" constant="7.6699999999999999" id="zj3-Dk-JPI"/>
                         </constraints>
@@ -170,7 +170,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="523" y="106"/>
+            <point key="canvasLocation" x="522.90076335877859" y="105.63380281690141"/>
         </scene>
     </scenes>
     <resources>
