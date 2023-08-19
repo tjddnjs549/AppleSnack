@@ -19,8 +19,8 @@ import UIKit
 
 
 final class WriteViewController: UIViewController {
-
-
+    
+    
     
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -31,14 +31,12 @@ final class WriteViewController: UIViewController {
     
     var mySnack: MySnack?
     
+    var snackNumber = 0
+    
     var snackManager = SnackManager.shared
     
-    
-    var mainTitle: String?
-    var content: String?
-    var url: String?
     var category: String?
-    //var index: Int?
+    var nowDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +46,9 @@ final class WriteViewController: UIViewController {
         setupKeyboardEvent()
         
     }
-
-    
-    
+        
     // MARK: - setup() 세팅 (테두리)
-
+    
     
     private func setup() {
         contextTextView.delegate = self
@@ -76,23 +72,21 @@ final class WriteViewController: UIViewController {
     }
     
     // MARK: - configureUI() (bar title , placeholder setting)
-
+    
     private func configureUI() {
         
         // 기존에 데이터가 있을때
-        if let selectedSnack = snackManager.getToDoListFromCoreData().first(where: { $0.title == mainTitle }) {
+        if let mySnack = mySnack {
             
-            if selectedSnack.text == content {
-                
-                self.title = "수정 페이지"
-                
-                titleTextField.text = selectedSnack.title
-                contextTextView.text = selectedSnack.text
-                urlTextView.text = selectedSnack.assiURL
-                
-            }
-            // 기존데이터가 없을때
-        } else {
+            self.title = "수정 페이지"
+            
+            titleTextField.text = mySnack.title
+            contextTextView.text = mySnack.text
+            urlTextView.text = mySnack.assiURL
+            
+        }
+        // 기존데이터가 없을때
+        else {
             self.title = "생성 페이지"
             
             contextTextView.text = "내용을 입력하세요."
@@ -103,15 +97,16 @@ final class WriteViewController: UIViewController {
         }
     }
     
-  
+    
     
     // MARK: - 네비게이션 바 설정
     
     private func setupNaviBar() {
         
+        self.title = "dd"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         
-    
+        
         
         let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(doneButtonTapped))
         
@@ -125,50 +120,57 @@ final class WriteViewController: UIViewController {
     }
     
     // MARK: - 완료버튼 누르면 이벤트 함수
-
+    
     @objc func doneButtonTapped() {
         
-        let titleTextField = titleTextField.text
-        
         //만약 타이틀이 빈값이면
-        if (titleTextField!.isEmpty) {
+        if titleTextField.hasText != true {
             titleIsEmptyAlertMessage()
             return
         } else { // 빈값이 아니면 이동
             if let mySnack = self.mySnack {
-                mySnack.title = titleTextField
+                mySnack.title = titleTextField.text
                 mySnack.text = contextTextView.text
                 mySnack.assiURL = urlTextView.text
-                snackManager.updateToDo(newSnackData: mySnack) {
+                snackManager.updateSnack(newSnackData: mySnack) {
                     print("업데이트 완료")
                     // 다시 전화면으로 돌아가기 or 2번 페이지로 가기(수정 필요❗️)
-                    self.navigationController?.popViewController(animated: true)
+                    let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
+                    vc.mySnack = self.snackManager.getSnackFromCoreData()[self.snackNumber]
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else {
-                snackManager.saveToDoData(title: titleTextField, text: contextTextView.text, photo: nil, categorie: "클래스", assiUrl: urlTextView.text) {
+                snackManager.saveToSnack(title: titleTextField.text, text: contextTextView.text, categorie: category, assiUrl: urlTextView.text) {
                     print("생성 완료")
-                    print(titleTextField!)
+                    
+                    let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
+                    vc.mySnack = self.snackManager.getSnackFromCoreData().first
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    
                 }
                 //세이브되면 디테일 페이지 이동
-                let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
+                //                let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
+                //                let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
+                //
+                //                vc.mainTitle = titleTextField
+                //                vc.content = contextTextView.text
+                //                vc.url = urlTextView.text
+                //                vc.category = "클래스"
+                //                NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
+                //                self.navigationController?.pushViewController(vc, animated: true)
                 
-                vc.mainTitle = titleTextField
-                vc.content = contextTextView.text
-                vc.url = urlTextView.text
-                vc.category = "클래스"
-                NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-                
-//                바로 셀있는 뷰로 이동
-//                guard let viewControllerStack = self.navigationController?.viewControllers else { return }
-//
-//                for viewController in viewControllerStack {
-//                    if let vc = viewController as? TestViewController {
-//                        self.navigationController?.pushViewController(vc, animated: true)
-//                    }
-//                }
+                //                바로 셀있는 뷰로 이동
+                //                guard let viewControllerStack = self.navigationController?.viewControllers else { return }
+                //
+                //                for viewController in viewControllerStack {
+                //                    if let vc = viewController as? TestViewController {
+                //                        self.navigationController?.pushViewController(vc, animated: true)
+                //                    }
+                //                }
             }
         }
     }
@@ -177,31 +179,31 @@ final class WriteViewController: UIViewController {
     }
     
     // MARK: - 제목 비어있으면 alert 창
-
+    
     private func titleIsEmptyAlertMessage() {
         
         let alert = UIAlertController(title: "제목이 비었습니다", message: "제목을 입력해야 완료가 됩니다", preferredStyle: .alert)
-                // UIAlertController를 통해 alert 창을 만듬/ preferredStyle: alert창이 어떻게 나오는지 설정
-                let success = UIAlertAction(title: "확인", style: .default) { action in
-                    print("확인 버튼이 눌렀습니다.")
-                }
-                let cancel = UIAlertAction(title: "취소", style: .cancel) { action in
-                    print("취소 버튼이 눌렀습니다.")
-                }
-                alert.addAction(success) //addSubview랑 같은 것
-                alert.addAction(cancel)
-                present(alert, animated: true, completion: nil) // 보여지게 함
-     }
+        // UIAlertController를 통해 alert 창을 만듬/ preferredStyle: alert창이 어떻게 나오는지 설정
+        let success = UIAlertAction(title: "확인", style: .default) { action in
+            print("확인 버튼이 눌렀습니다.")
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel) { action in
+            print("취소 버튼이 눌렀습니다.")
+        }
+        alert.addAction(success) //addSubview랑 같은 것
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil) // 보여지게 함
+    }
     
     // MARK: - scrollViewTapped() (스크롤뷰에서 다른 곳 터치 시 키보드 내림)
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-           view.endEditing(true)
-       }
+        view.endEditing(true)
+    }
     
     
     // MARK: - setupKeyboardEvent() (뷰에서 키보드 올림과 내림에서의 화면)
-
+    
     func setupKeyboardEvent() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -216,7 +218,7 @@ final class WriteViewController: UIViewController {
         let keyboardTopY = keyboardFrame.cgRectValue.origin.y
         // 현재 선택한 텍스트 필드의 Frame 값
         let convertedTextViewFrame = view.convert(currentTextView.frame,
-                                                   from: currentTextView.superview)
+                                                  from: currentTextView.superview)
         // Y축으로 현재 텍스트 필드의 하단 위치
         let textFieldBottomY = convertedTextViewFrame.origin.y + convertedTextViewFrame.size.height
         

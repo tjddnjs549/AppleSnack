@@ -16,7 +16,8 @@ final class SnackManager {
     
     
     // MARK: - [Create] 코어데이터에 데이터 생성하기
-    func saveToDoData(title: String?, text: String?, photo: Data?, categorie: String?, assiUrl: String?, completion: @escaping () -> Void) {
+
+    func saveToSnack(title: String?, text: String?, categorie: String?, assiUrl: String?, completion: @escaping () -> Void) {
         if let context = context {
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
                 
@@ -24,7 +25,6 @@ final class SnackManager {
 
                 snackData.title = title
                 snackData.text = text
-                snackData.textPhoto = photo
                 snackData.categorie = categorie
                 snackData.assiURL = assiUrl
                 snackData.date = Date()
@@ -36,7 +36,7 @@ final class SnackManager {
     }
     
     // MARK: - [Read] 코어데이터에 저장된 데이터 모두 읽어오기
-    func getToDoListFromCoreData() -> [MySnack] {
+    func getSnackFromCoreData() -> [MySnack] {
         var snackList: [MySnack] = []
         if let context = context {
             let request = NSFetchRequest<MySnack>(entityName: self.modelName)
@@ -54,7 +54,7 @@ final class SnackManager {
     }
     
     // MARK: - [Update] 코어데이터에서 데이터 수정하기 (일치하는 데이터 찾아서 ===> 수정)
-    func updateToDo(newSnackData: MySnack, completion: @escaping () -> Void) {
+    func updateSnack(newSnackData: MySnack, completion: @escaping () -> Void) {
 
         guard let date = newSnackData.date else {
             return
@@ -81,7 +81,7 @@ final class SnackManager {
     }
     
     // MARK: - [Delete] 코어데이터에서 데이터 삭제하기 (일치하는 데이터 찾아서 ===> 삭제)
-    func deleteToDo(data: MySnack, completion: @escaping () -> Void) {
+    func deleteSnack(data: MySnack, completion: @escaping () -> Void) {
         guard let date = data.date else {
             return
         }
