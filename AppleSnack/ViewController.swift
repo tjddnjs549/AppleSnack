@@ -245,14 +245,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     
     @IBAction func deletButton(_ sender: UIButton) {
-        
-        let index = sender.tag
-        
-        if index < data.count {
-            data.remove(at: index)
-            myCollectionView.deleteItems(
-                at: [IndexPath(item: index, section: 0)])
+    
         }
         
     }
-}
