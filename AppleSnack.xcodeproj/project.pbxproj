@@ -167,7 +167,6 @@
 			children = (
 				63523EC42A8A0EE7002C677A /* AppDelegate.swift */,
 				63523EC62A8A0EE7002C677A /* SceneDelegate.swift */,
-				63523ED22A8A0EE8002C677A /* LaunchScreen.storyboard */,
 				D146A0622A8F8E410013121F /* Extension */,
 				63BCAB672A90CDE0002A3607 /* Helpers */,
 				63BCAB6A2A91205C002A3607 /* Font */,
@@ -175,6 +174,7 @@
 				63BCAB652A90CDC5002A3607 /* Views */,
 				63BCAB662A90CDCB002A3607 /* Controllers */,
 				63523ED02A8A0EE8002C677A /* Assets.xcassets */,
+				63523ED22A8A0EE8002C677A /* LaunchScreen.storyboard */,
 				63523ED52A8A0EE8002C677A /* Info.plist */,
 				63523ECD2A8A0EE7002C677A /* AppleSnack.xcdatamodeld */,
 			);
