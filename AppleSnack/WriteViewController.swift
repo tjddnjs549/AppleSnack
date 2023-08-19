@@ -80,7 +80,7 @@ final class WriteViewController: UIViewController {
     private func configureUI() {
         
         // 기존에 데이터가 있을때
-        if let selectedSnack = snackManager.getToDoListFromCoreData().first(where: { $0.title == mainTitle }) {
+        if let selectedSnack = snackManager.getSnackFromCoreData().first(where: { $0.title == mainTitle }) {
             
             if selectedSnack.text == content {
                 
@@ -139,13 +139,13 @@ final class WriteViewController: UIViewController {
                 mySnack.title = titleTextField
                 mySnack.text = contextTextView.text
                 mySnack.assiURL = urlTextView.text
-                snackManager.updateToDo(newSnackData: mySnack) {
+                snackManager.updateSnack(newSnackData: mySnack) {
                     print("업데이트 완료")
                     // 다시 전화면으로 돌아가기 or 2번 페이지로 가기(수정 필요❗️)
                     self.navigationController?.popViewController(animated: true)
                 }
             } else {
-                snackManager.saveToDoData(title: titleTextField, text: contextTextView.text, photo: nil, categorie: "클래스", assiUrl: urlTextView.text) {
+                snackManager.saveToSnack(title: titleTextField, text: contextTextView.text, categorie: "클래스", assiUrl: urlTextView.text) {
                     print("생성 완료")
                     print(titleTextField!)
                 }

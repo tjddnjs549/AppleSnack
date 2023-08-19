@@ -79,7 +79,7 @@ final class DetailViewController: UIViewController {
             writeVC.mainTitle = titleLabel.text
             writeVC.content = contextLabel.text
             writeVC.url = urlContextLabel.text
-            print(snackManager.getToDoListFromCoreData().count)
+            print(snackManager.getSnackFromCoreData().count)
             writeVC.category = "클래스"
             // 위처럼 하면 에러발생 (스토리보드 객체가 나중에 생김)
         }

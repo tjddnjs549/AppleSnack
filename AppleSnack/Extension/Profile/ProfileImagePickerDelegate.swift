@@ -19,7 +19,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate {
         if let selectedImage = info[.originalImage] as? UIImage {
             profileImage.image = selectedImage
             
-            profileManager.saveToDoData(name: nameField.text, photo: selectedImage.pngData(), git: githubTextView.text, blog: blogTextView.text) {}
+            profileManager.saveProfile(name: nameField.text, photo: selectedImage.pngData(), git: githubTextView.text, blog: blogTextView.text, email: emailField.text) {}
         }
         picker.dismiss(animated: true, completion: nil)
     }

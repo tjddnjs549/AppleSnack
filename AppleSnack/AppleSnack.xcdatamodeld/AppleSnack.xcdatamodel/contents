@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Categorie" representedClassName="Categorie" syncable="YES">
+        <attribute name="categorie" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <entity name="MyProfile" representedClassName="MyProfile" syncable="YES">
         <attribute name="blog" optional="YES" attributeType="String"/>
-        <attribute name="gauge" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="github" optional="YES" attributeType="String"/>
-        <attribute name="level" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="photo" optional="YES" attributeType="Binary"/>
     </entity>
@@ -13,7 +16,6 @@
         <attribute name="categorie" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
-        <attribute name="textPhoto" optional="YES" attributeType="Binary"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
 </model>
