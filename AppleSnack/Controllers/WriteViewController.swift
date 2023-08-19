@@ -7,7 +7,6 @@
 import UIKit
 
 
-
 final class WriteViewController: UIViewController {
     
     
@@ -19,39 +18,16 @@ final class WriteViewController: UIViewController {
     var snackNumber = 0
     var snackManager = SnackManager.shared
     var category: String?
-
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         setupNaviBar()
         setup()
         setupKeyboardEvent()
-        
     }
         
-    // MARK: - setup() 세팅 (테두리)
-    
-    
-    private func setup() {
-        contextTextView.delegate = self
-        urlTextView.delegate = self
-        titleTextField.delegate = self
-        
-        contextTextView.layer.borderWidth = 1.5
-        contextTextView.layer.borderColor = UIColor.green.cgColor
-        contextTextView.layer.cornerRadius = 12
-        
-        urlTextView.layer.borderWidth = 1.5
-        urlTextView.layer.borderColor = UIColor.green.cgColor
-        urlTextView.layer.cornerRadius = 12
-        
-        titleTextField.layer.borderWidth = 1.5
-        titleTextField.layer.cornerRadius = 12
-        titleTextField.layer.borderColor = UIColor.green.cgColor
-        titleTextField.clearButtonMode = .always //오른쪽에 'x' 버튼
-        titleTextField.returnKeyType = .next //리턴 버튼 수정
-        
-    }
     
     // MARK: - configureUI() (bar title , placeholder setting)
     
@@ -71,6 +47,8 @@ final class WriteViewController: UIViewController {
         else {
             self.title = "생성 페이지"
             
+            titleTextField.textColor = .lightGray
+            
             contextTextView.text = "내용을 입력하세요."
             contextTextView.textColor = .lightGray
             
@@ -82,7 +60,6 @@ final class WriteViewController: UIViewController {
     // MARK: - 네비게이션 바 설정
     
     private func setupNaviBar() {
-        
         
         
         let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(doneButtonTapped))
@@ -119,9 +96,8 @@ final class WriteViewController: UIViewController {
                 snackManager.saveToSnack(title: titleTextField.text, text: contextTextView.text, categorie: category, assiUrl: urlTextView.text) {
                     print("생성 완료")
                     NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
-                    let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
-                    vc.mySnack = self.snackManager.getSnackFromCoreData().first
+                    let storyboard = UIStoryboard(name: "SnackList", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "SnackList") as! SnackListController
                     
                     self.navigationController?.pushViewController(vc, animated: true)
                     

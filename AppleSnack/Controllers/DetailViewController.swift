@@ -10,6 +10,7 @@ import UIKit
 
 final class DetailViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contextLabel: UILabel!
@@ -19,20 +20,27 @@ final class DetailViewController: UIViewController {
     var snackNumber = 0
     var snackManager = SnackManager.shared
     
-    // 데이터 변수 -> 나오는 걸 보기 위해 선언
-    var mainTitle: String? = "asdad"
-    var content: String? = "asdad"
-    var url: String? = "asda"
+
     var category: String? = "클래스"
-    var date: Date? = Date()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNaviBar()
         configureUI()
         contextLabel.textAlignment = .justified
-        
     }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnSwipe = true
+      }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.hidesBarsOnSwipe = false
+      }
+
     
     // MARK: - configureUI 세팅
 
@@ -41,8 +49,12 @@ final class DetailViewController: UIViewController {
         titleLabel.text = mySnack?.title
         contextLabel.text = mySnack?.text
         urlContextLabel.text = mySnack?.assiURL
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
 
     }
+    
+    
     
     // MARK: - 네비게이션 바 설정
     
