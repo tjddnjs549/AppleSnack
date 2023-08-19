@@ -48,7 +48,9 @@ class SnackListController: UIViewController {
         
         
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(plusButtonTapped))
-        
+        let backButton = UIBarButtonItem(title: "뒤로", style: .done, target: self, action: #selector(backButtonTapped))
+
+        navigationItem.leftBarButtonItem = backButton
         
         navigationItem.searchController = searchController
         navigationItem.rightBarButtonItem = button
@@ -61,7 +63,12 @@ class SnackListController: UIViewController {
     @objc func plusButtonTapped() {
         performSegue(withIdentifier: "writeVC", sender: nil)
     }
-    
+    @objc func backButtonTapped() {
+        let storyboard = UIStoryboard(name: "ViewController", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "writeVC" {
