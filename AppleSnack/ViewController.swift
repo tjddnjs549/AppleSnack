@@ -9,8 +9,7 @@ import UIKit // Foundation 프레임워크를 내부적으로 import하고 있�
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
-    var data: [String] = ["클래스", "구조체"]
-    
+    var data: [String] = []
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var newButton: UIButton!
@@ -49,7 +48,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // Layout 간격 설정
         
         let flowLayout = UICollectionViewFlowLayout()
-        
+
         
         if let flowLayout = myCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -71,9 +70,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         myCollectionView.delegate = self
         
         
-        //        let viewModel = CommentViewModel(comment: comments[IndexPath.row])
-        //        let height = viewModel.size(forWidth: view.frame.width).height
-        //        return CGSize(width: view.frame.width, height: height)
+//        let viewModel = CommentViewModel(comment: comments[IndexPath.row])
+//        let height = viewModel.size(forWidth: view.frame.width).height
+//        return CGSize(width: view.frame.width, height: height)
     }
     
     
@@ -85,7 +84,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if isShowFloating {
             buttons.reversed().forEach { button in
                 UIView.animate(withDuration: 0.3){
-                    button.isHidden = true // "편집" 버튼을 눌렀을 때 다시 접히게 해줌
+                    button.isHidden = true
                     self.view.layoutIfNeeded()
                     
                 }
@@ -113,6 +112,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     
                 }
             }
+            
         }
         
         isShowFloating = !isShowFloating
@@ -151,12 +151,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         cell.contentView.layer.borderWidth = 1
         cell.newCell.text = data[indexPath.row] // cell에 입력한 label이 나오게 해줌
         
-        //        cell.configure(text: data[indexPath.item])
+//        cell.configure(text: data[indexPath.item])
         cell.deleteButton.tag = indexPath.item
         cell.deleteButton.addTarget(self, action: #selector(deletButton(_ :)), for: .touchUpInside)
-        
-        
-        
+       
         return cell
     }
     
@@ -206,10 +204,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // cell 크기 조정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-// let text = data[indexPath.item]
-// let width = collectionView.bounds.width - 20
+        let text = data[indexPath.item]
+        let width = collectionView.bounds.width - 20
         // let height = text.height(withConstrainedWidth: width, font: UIFont.systemFont(ofSize: 10))
-        
+    
         return CGSize(width: 100, height: 50)
     }
     // MARK: - alert Button Action
@@ -239,6 +237,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // MARK: - deletButton
     
     @IBAction func deletButton(_ sender: UIButton) {
+        let index = sender.tag
+        
+        if index < data.count {
+            data.remove(at: index)
+            myCollectionView.reloadData()
+        }
         
     }
 }
