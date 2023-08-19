@@ -16,6 +16,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var urlContextLabel: UILabel!
     
     var mySnack: MySnack?
+    var snackNumber = 0
     var snackManager = SnackManager.shared
     
     // 데이터 변수 -> 나오는 걸 보기 위해 선언
@@ -36,17 +37,10 @@ final class DetailViewController: UIViewController {
 
     private func configureUI() {
         
-        titleLabel.text = mainTitle
-        contextLabel.text = content
-        urlContextLabel.text = url
-//        if let mySnack = self.mySnack {
-//
-//            guard let text = mySnack.title, let context = mySnack.text, let url = mySnack.assiURL else { return }
-//
-//            titleLabel.text = text
-//            contextLabel.text = context
-//            urlContextLabel.text = url
-//        }
+        titleLabel.text = mySnack?.title
+        contextLabel.text = mySnack?.text
+        urlContextLabel.text = mySnack?.assiURL
+
     }
     
     // MARK: - 네비게이션 바 설정
@@ -77,9 +71,8 @@ final class DetailViewController: UIViewController {
         //print(#function)
         if segue.identifier == "ToWriteVC" {
             let writeVC = segue.destination as! WriteViewController
-            writeVC.mainTitle = titleLabel.text
-            writeVC.content = contextLabel.text
-            writeVC.url = urlContextLabel.text
+            writeVC.snackNumber = snackNumber
+            writeVC.mySnack = mySnack
             writeVC.category = "클래스"
             writeVC.nowDate = date
             writeVC.mySnack = mySnack
@@ -88,13 +81,8 @@ final class DetailViewController: UIViewController {
         }
     }
     @objc func backButtonTapped() {
-        //백하면 바로 셀있는 뷰로 이동
-//        guard let viewControllerStack = self.navigationController?.viewControllers else { return }
-//        for viewController in viewControllerStack {
-//            if let _ = viewController as? _ {
-//                self.navigationController?.popToViewController(_, animated: true)
-//            }
-//        }
+        let vc = self.navigationController?.viewControllers.first as! SnackListController
+        self.navigationController?.popToViewController(vc, animated: true)
     }
 
     
