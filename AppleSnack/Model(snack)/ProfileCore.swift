@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-//MARK: - To do 관리하는 매니저 (코어데이터 관리) /
+//MARK: - To do 관리하는 매니저 (코어데이터 관리) //
 
 final class ProfileManager {
     
