@@ -104,6 +104,7 @@
                     <size key="freeformSize" width="393" height="1500"/>
                     <connections>
                         <outlet property="contextLabel" destination="4Bx-r3-Tms" id="ahy-kW-Vtc"/>
+                        <outlet property="scrollView" destination="P9T-9n-OOZ" id="AzN-o1-VJY"/>
                         <outlet property="titleLabel" destination="qlF-fL-AN1" id="Hw0-nu-M3h"/>
                         <outlet property="urlContextLabel" destination="XQl-ar-bj5" id="NNI-ny-jb6"/>
                         <segue destination="pVo-Qe-0Ci" kind="push" identifier="ToWriteVC" id="9Qk-31-0LK"/>
@@ -111,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1251.145038167939" y="-16.197183098591552"/>
+            <point key="canvasLocation" x="2177.8625954198474" y="-16.197183098591552"/>
         </scene>
         <!--Write View Controller-->
         <scene sceneID="men-5h-7I7">
@@ -122,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="S9V-M2-F4R">
-                                <rect key="frame" x="10" y="30" width="373" height="90"/>
+                                <rect key="frame" x="10" y="130" width="373" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvf-sS-AQQ">
                                         <rect key="frame" x="0.0" y="0.0" width="59" height="46.666666666666664"/>
@@ -131,7 +132,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="입력하세요!" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rMr-Ws-Kz1">
-                                        <rect key="frame" x="0.0" y="53.666666666666671" width="373" height="36.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="53.666666666666657" width="373" height="36.333333333333343"/>
                                         <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -146,7 +147,7 @@
                                 </constraints>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="koY-zY-RKZ">
-                                <rect key="frame" x="10" y="140" width="373" height="275"/>
+                                <rect key="frame" x="10" y="240" width="373" height="275"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="275" id="1N2-we-eWT"/>
@@ -155,11 +156,11 @@
 2023-08-16 22:56:20.416720+0900 AppleSnack[19193:594042] [HardwareKeyboard] -[UIApplication getKeyboardDevicePropertiesForSenderID:shouldUpdate:usingSyntheticEvent:], failed to fetch device property for senderID (778835616971358209) use primary keyboard info instead.
 </string>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Czm-BC-yW1">
-                                <rect key="frame" x="10" y="465.00000000000006" width="373" height="131.66666666666669"/>
+                                <rect key="frame" x="10" y="555" width="373" height="131.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도움되는 URL 주소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oa6-LC-bHg">
                                         <rect key="frame" x="0.0" y="0.0" width="239.66666666666666" height="43.666666666666664"/>
@@ -170,12 +171,16 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consrep" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9SD-ns-EN1">
                                         <rect key="frame" x="0.0" y="51.666666666666629" width="373" height="80"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" link="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="JDP-Jp-ZA2"/>
                                         </constraints>
                                         <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                                     </textView>
                                 </subviews>
                                 <constraints>
@@ -185,19 +190,19 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="QW2-EH-FOA"/>
+                        <viewLayoutGuide key="safeArea" id="Rte-Ld-ket"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="koY-zY-RKZ" firstAttribute="leading" secondItem="QW2-EH-FOA" secondAttribute="leading" constant="10" id="Ox9-jN-dTM"/>
-                            <constraint firstItem="QW2-EH-FOA" firstAttribute="trailing" secondItem="Czm-BC-yW1" secondAttribute="trailing" constant="10" id="Pmq-QB-cvc"/>
-                            <constraint firstItem="QW2-EH-FOA" firstAttribute="trailing" secondItem="koY-zY-RKZ" secondAttribute="trailing" constant="10" id="Rkv-KR-w05"/>
-                            <constraint firstItem="Czm-BC-yW1" firstAttribute="top" secondItem="koY-zY-RKZ" secondAttribute="bottom" constant="50" id="WxY-qf-buB"/>
+                            <constraint firstItem="koY-zY-RKZ" firstAttribute="leading" secondItem="Ib7-lq-UDf" secondAttribute="leading" constant="10" id="Ox9-jN-dTM"/>
+                            <constraint firstAttribute="trailing" secondItem="Czm-BC-yW1" secondAttribute="trailing" constant="10" id="Pmq-QB-cvc"/>
+                            <constraint firstAttribute="trailing" secondItem="koY-zY-RKZ" secondAttribute="trailing" constant="10" id="Rkv-KR-w05"/>
+                            <constraint firstItem="Czm-BC-yW1" firstAttribute="top" secondItem="koY-zY-RKZ" secondAttribute="bottom" constant="40" id="WxY-qf-buB"/>
                             <constraint firstItem="koY-zY-RKZ" firstAttribute="top" secondItem="S9V-M2-F4R" secondAttribute="bottom" constant="20" id="Y1L-IE-qc2"/>
-                            <constraint firstItem="Czm-BC-yW1" firstAttribute="leading" secondItem="QW2-EH-FOA" secondAttribute="leading" constant="10" id="hEJ-53-k6d"/>
-                            <constraint firstItem="QW2-EH-FOA" firstAttribute="trailing" secondItem="S9V-M2-F4R" secondAttribute="trailing" constant="10" id="kTz-Mo-vyF"/>
-                            <constraint firstItem="S9V-M2-F4R" firstAttribute="top" secondItem="QW2-EH-FOA" secondAttribute="top" constant="30" id="n2N-oW-UyJ"/>
-                            <constraint firstItem="S9V-M2-F4R" firstAttribute="leading" secondItem="QW2-EH-FOA" secondAttribute="leading" constant="10" id="q7A-nB-G2k"/>
+                            <constraint firstItem="Czm-BC-yW1" firstAttribute="leading" secondItem="Ib7-lq-UDf" secondAttribute="leading" constant="10" id="hEJ-53-k6d"/>
+                            <constraint firstAttribute="trailing" secondItem="S9V-M2-F4R" secondAttribute="trailing" constant="10" id="kTz-Mo-vyF"/>
+                            <constraint firstItem="S9V-M2-F4R" firstAttribute="top" secondItem="Ib7-lq-UDf" secondAttribute="top" constant="130" id="n2N-oW-UyJ"/>
+                            <constraint firstItem="S9V-M2-F4R" firstAttribute="leading" secondItem="Ib7-lq-UDf" secondAttribute="leading" constant="10" id="q7A-nB-G2k"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wiE-Jc-QcE"/>
@@ -209,7 +214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTA-1M-B21" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2393" y="8"/>
+            <point key="canvasLocation" x="3318.320610687023" y="7.746478873239437"/>
         </scene>
     </scenes>
     <resources>

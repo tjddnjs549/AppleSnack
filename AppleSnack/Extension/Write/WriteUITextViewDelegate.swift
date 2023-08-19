@@ -30,5 +30,4 @@ extension WriteViewController: UITextViewDelegate {
             textView.textColor = .lightGray
         }
     }
-    
 }
