@@ -9,7 +9,8 @@ import UIKit // Foundation 프레임워크를 내부적으로 import하고 있�
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
-    var data: [String] = []
+    var data: [String] = ["구조체", "클래스"]
+    var selectedIndexPaths: Set<IndexPath> = []
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var newButton: UIButton!
