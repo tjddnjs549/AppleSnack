@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ueW-KC-H0h">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="Cell" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ueW-KC-H0h">
                                 <rect key="frame" x="5" y="108" width="383" height="656"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vwc-MC-Jgx">
@@ -28,7 +28,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainCollectionViewCell" id="7pr-j0-yIe" customClass="MainCollectionViewCell" customModule="AppleSnack" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="Cell" reuseIdentifier="Cell" id="7pr-j0-yIe" customClass="Cell" customModule="AppleSnack" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="184" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2Nx-Zs-faj">
@@ -36,27 +36,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE1-YC-Hqx">
-                                                    <rect key="frame" x="50" y="20" width="84" height="39"/>
+                                                    <rect key="frame" x="10" y="29.333333333333336" width="164" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CE1-YC-Hqx" firstAttribute="leading" secondItem="2Nx-Zs-faj" secondAttribute="leading" constant="50" id="6bL-tR-ICi"/>
-                                                <constraint firstAttribute="bottom" secondItem="CE1-YC-Hqx" secondAttribute="bottom" constant="20" id="WuS-jM-4Tf"/>
-                                                <constraint firstAttribute="trailing" secondItem="CE1-YC-Hqx" secondAttribute="trailing" constant="50" id="ibV-69-PuO"/>
+                                                <constraint firstItem="CE1-YC-Hqx" firstAttribute="leading" secondItem="2Nx-Zs-faj" secondAttribute="leading" constant="10" id="MGJ-IC-4S7"/>
                                                 <constraint firstItem="CE1-YC-Hqx" firstAttribute="centerY" secondItem="2Nx-Zs-faj" secondAttribute="centerY" id="m5d-eY-orK"/>
-                                                <constraint firstItem="CE1-YC-Hqx" firstAttribute="top" secondItem="2Nx-Zs-faj" secondAttribute="top" constant="20" id="rJf-tP-vbN"/>
+                                                <constraint firstAttribute="trailing" secondItem="CE1-YC-Hqx" secondAttribute="trailing" constant="10" id="m5v-GH-YGW"/>
                                                 <constraint firstItem="CE1-YC-Hqx" firstAttribute="centerX" secondItem="2Nx-Zs-faj" secondAttribute="centerX" id="rw1-oc-tgH"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="184" height="79"/>
                                         <connections>
-                                            <outlet property="mainCollectionViewCell" destination="CE1-YC-Hqx" id="AFt-VH-Cef"/>
+                                            <outlet property="deleteButton" destination="3yH-MD-j4J" id="fnD-tz-Gjj"/>
+                                            <outlet property="newCell" destination="CE1-YC-Hqx" id="TKS-9a-QQJ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Ctv-OO-INL"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Hn5-bi-rkj"/>
+                                </connections>
                             </collectionView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLi-VL-SAc">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -73,8 +76,16 @@
                                 </items>
                             </tabBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-kq-cAd">
-                                <rect key="frame" x="333" y="679" width="30" height="30"/>
+                                <rect key="frame" x="333" y="709" width="30" height="30"/>
                                 <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amo-YB-Fko">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="생성"/>
+                                        <connections>
+                                            <action selector="newButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XCT-bj-un2"/>
+                                        </connections>
+                                    </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rN-KM-hsF">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -84,6 +95,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="삭제"/>
+                                        <connections>
+                                            <action selector="deletButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gav-TI-0MC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdw-NX-vaI">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -99,21 +113,21 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="KD9-Dt-pLe" firstAttribute="top" secondItem="RgJ-kq-cAd" secondAttribute="bottom" constant="60" id="1Kv-3g-IMD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="hLi-VL-SAc" secondAttribute="bottom" constant="-44" id="2ak-ZW-Xms"/>
                             <constraint firstItem="KD9-Dt-pLe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2pS-1Y-n6V"/>
                             <constraint firstItem="KD9-Dt-pLe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4K0-6b-upA"/>
                             <constraint firstItem="hLi-VL-SAc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4ka-aL-bmr"/>
                             <constraint firstItem="hLi-VL-SAc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="B9z-Qy-XGJ"/>
                             <constraint firstItem="hLi-VL-SAc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EOw-UD-vRY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RgJ-kq-cAd" secondAttribute="trailing" constant="30" id="GNb-zL-Gad"/>
                             <constraint firstItem="KD9-Dt-pLe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JjN-qu-bxm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ueW-KC-H0h" secondAttribute="trailing" constant="5" id="Ud5-E4-MIm"/>
+                            <constraint firstItem="KD9-Dt-pLe" firstAttribute="top" secondItem="RgJ-kq-cAd" secondAttribute="bottom" constant="30" id="VoY-8F-fqj"/>
                             <constraint firstAttribute="bottom" secondItem="KD9-Dt-pLe" secondAttribute="bottom" id="Xtj-54-chM"/>
                             <constraint firstItem="ueW-KC-H0h" firstAttribute="top" secondItem="hLi-VL-SAc" secondAttribute="bottom" constant="5" id="Z3p-9s-FN3"/>
                             <constraint firstItem="KD9-Dt-pLe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-49" id="d2g-w7-cZF"/>
                             <constraint firstItem="ueW-KC-H0h" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="ijX-3B-AdK"/>
                             <constraint firstItem="ueW-KC-H0h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pFn-E5-3AW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RgJ-kq-cAd" secondAttribute="trailing" constant="30" id="r92-B6-Wlq"/>
                             <constraint firstItem="KD9-Dt-pLe" firstAttribute="top" secondItem="ueW-KC-H0h" secondAttribute="bottom" constant="5" id="rO2-G2-uDy"/>
                             <constraint firstItem="hLi-VL-SAc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="teJ-b8-Kz0"/>
                         </constraints>
@@ -123,7 +137,8 @@
                         <outlet property="fixButton" destination="9rN-KM-hsF" id="6pW-CB-g1s"/>
                         <outlet property="floatingButton" destination="xdw-NX-vaI" id="nPk-5P-J8V"/>
                         <outlet property="floatingStackView" destination="RgJ-kq-cAd" id="1eA-Sx-eTy"/>
-                        <outlet property="myCollectionView" destination="ueW-KC-H0h" id="UZs-a7-0uL"/>
+                        <outlet property="myCollectionView" destination="ueW-KC-H0h" id="XNZ-VZ-lVI"/>
+                        <outlet property="newButton" destination="amo-YB-Fko" id="wqY-VI-hKA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
