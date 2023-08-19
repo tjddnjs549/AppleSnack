@@ -10,16 +10,14 @@ import UIKit // Foundation 프레임워크를 내부적으로 import하고 있�
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     var data: [String] = ["클래스", "구조체"]
-    
+    var selectedIndexPaths: Set<IndexPath> = [] // collection cell를 선택해서 삭제하기 위해서 필요
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var newButton: UIButton!
     @IBOutlet weak var floatingStackView: UIStackView!
     @IBOutlet weak var floatingButton: UIButton!
     @IBOutlet weak var fixButton: UIButton!
-    @IBOutlet weak var deletButton: UIButton!
-    
-    
+    @IBOutlet weak var deleteButton: UIButton!
     
     lazy var floatingDimView: UIView = {
         let view = UIView(frame: self.view.frame)
@@ -35,7 +33,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     var isShowFloating: Bool = false
     
-    lazy var buttons: [UIButton] = [self.fixButton, self.deletButton, self.newButton]
+    lazy var buttons: [UIButton] = [self.fixButton, self.deleteButton, self.newButton]
     
     
     
@@ -61,8 +59,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         flowLayout.minimumInteritemSpacing = 0.5 // 셀의 가로 간격
         
         
-        // flowLayout.itemSize = CGSize(width: 100, height: 50)
-        // myCollectionView.collectionViewLayout = flowLayout // 기본 레이아웃으로 설정?!
+         flowLayout.itemSize = CGSize(width: 100, height: 50)
+         myCollectionView.collectionViewLayout = flowLayout // 기본 세팅
         
         
         // 콜렉션 뷰에 대한 설정
@@ -123,8 +121,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         UIView.animate(withDuration: 0.3) {
             sender.setImage(image, for: .normal)
             sender.transform = roatation
+    
         }
     }
+
     
     // MARK: - UICollectionViewDataSource
     
@@ -151,11 +151,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         cell.contentView.layer.borderWidth = 1
         cell.newCell.text = data[indexPath.row] // cell에 입력한 label이 나오게 해줌
         
-        //        cell.configure(text: data[indexPath.item])
+        cell.configure(text: data[indexPath.item])
         cell.deleteButton.tag = indexPath.item
         cell.deleteButton.addTarget(self, action: #selector(deletButton(_ :)), for: .touchUpInside)
-        
-        
         
         return cell
     }
@@ -215,7 +213,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // MARK: - alert Button Action
     
     @IBAction func newButton(_ sender: UIButton) {
+        
         let alertController = UIAlertController(title: "카테고리를 생성합니다.", message: "", preferredStyle: .alert)
+        
         alertController.addTextField { textField in
             textField.placeholder = "입력하세요"
         }
@@ -224,21 +224,35 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if let textField = alertController?.textFields?.first, let text = textField.text, !text.isEmpty {
                 self?.data.append(text)
                 self?.myCollectionView.reloadData()
+                
             }
+            
         }
+        
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
         alertController.addAction(addAction)
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true, completion: nil)
+        
+        
     }
     
     
     
     // MARK: - deletButton
+
     
     @IBAction func deletButton(_ sender: UIButton) {
+        
+        let index = sender.tag
+        
+        if index < data.count {
+            data.remove(at: index)
+            myCollectionView.deleteItems(
+                at: [IndexPath(item: index, section: 0)])
+        }
         
     }
 }

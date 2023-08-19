@@ -51,7 +51,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="184" height="79"/>
                                         <connections>
-                                            <outlet property="deleteButton" destination="3yH-MD-j4J" id="fnD-tz-Gjj"/>
+                                            <outlet property="deleteButton" destination="3yH-MD-j4J" id="YxW-Is-Pta"/>
                                             <outlet property="newCell" destination="CE1-YC-Hqx" id="TKS-9a-QQJ"/>
                                         </connections>
                                     </collectionViewCell>
@@ -96,7 +96,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="삭제"/>
                                         <connections>
-                                            <action selector="delectButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yGN-PJ-Khc"/>
+                                            <action selector="deletButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Wp-DV-K6Z"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdw-NX-vaI">
@@ -133,7 +133,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="deletButton" destination="3yH-MD-j4J" id="3ru-Y6-kQg"/>
+                        <outlet property="deleteButton" destination="3yH-MD-j4J" id="lBD-hf-Rqr"/>
                         <outlet property="fixButton" destination="9rN-KM-hsF" id="6pW-CB-g1s"/>
                         <outlet property="floatingButton" destination="xdw-NX-vaI" id="nPk-5P-J8V"/>
                         <outlet property="floatingStackView" destination="RgJ-kq-cAd" id="1eA-Sx-eTy"/>

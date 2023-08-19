@@ -19,11 +19,6 @@ class Cell: UICollectionViewCell {
             return label
         }()
     
-    override var isSelected: Bool {
-        didSet {
-            contentView.backgroundColor = isSelected ? UIColor.lightGray : UIColor.white
-        }
-    }
     func configure(text: String) {
         label.text = text
     }
