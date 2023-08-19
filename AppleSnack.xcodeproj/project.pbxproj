@@ -16,6 +16,13 @@
 		525543992A903F5C00EBE369 /* MyProfile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525543932A903F5C00EBE369 /* MyProfile+CoreDataClass.swift */; };
 		5255439A2A903F5C00EBE369 /* MyProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525543942A903F5C00EBE369 /* MyProfile+CoreDataProperties.swift */; };
 		5255439D2A9040AE00EBE369 /* CategorieCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255439C2A9040AE00EBE369 /* CategorieCore.swift */; };
+		5255439F2A90438500EBE369 /* WWDChelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255439E2A90438500EBE369 /* WWDChelper.swift */; };
+		525543A12A9043A700EBE369 /* WWDCcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525543A02A9043A700EBE369 /* WWDCcell.swift */; };
+		525543A32A9043D900EBE369 /* WWDCcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525543A22A9043D900EBE369 /* WWDCcontroller.swift */; };
+		529BA33A2A904580000E0011 /* WWDC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529BA3392A904580000E0011 /* WWDC.storyboard */; };
+		529BA33C2A904BE4000E0011 /* SnackList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529BA33B2A904BE4000E0011 /* SnackList.storyboard */; };
+		529BA33E2A904F57000E0011 /* SnackListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529BA33D2A904F57000E0011 /* SnackListController.swift */; };
+		529BA3402A9050FC000E0011 /* SnackListCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529BA33F2A9050FC000E0011 /* SnackListCellTableViewCell.swift */; };
 		632D14152A8CA46C0008BB97 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632D14142A8CA46C0008BB97 /* WriteViewController.swift */; };
 		63441B942A8A367D0017994F /* DetailViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63441B932A8A367D0017994F /* DetailViewStoryboard.storyboard */; };
 		63441B962A8A3C2C0017994F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63441B952A8A3C2C0017994F /* DetailViewController.swift */; };
@@ -45,6 +52,13 @@
 		525543932A903F5C00EBE369 /* MyProfile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyProfile+CoreDataClass.swift"; sourceTree = "<group>"; };
 		525543942A903F5C00EBE369 /* MyProfile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyProfile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5255439C2A9040AE00EBE369 /* CategorieCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieCore.swift; sourceTree = "<group>"; };
+		5255439E2A90438500EBE369 /* WWDChelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDChelper.swift; sourceTree = "<group>"; };
+		525543A02A9043A700EBE369 /* WWDCcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCcell.swift; sourceTree = "<group>"; };
+		525543A22A9043D900EBE369 /* WWDCcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCcontroller.swift; sourceTree = "<group>"; };
+		529BA3392A904580000E0011 /* WWDC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WWDC.storyboard; sourceTree = "<group>"; };
+		529BA33B2A904BE4000E0011 /* SnackList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SnackList.storyboard; sourceTree = "<group>"; };
+		529BA33D2A904F57000E0011 /* SnackListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackListController.swift; sourceTree = "<group>"; };
+		529BA33F2A9050FC000E0011 /* SnackListCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackListCellTableViewCell.swift; sourceTree = "<group>"; };
 		632D14142A8CA46C0008BB97 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		63441B932A8A367D0017994F /* DetailViewStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewStoryboard.storyboard; sourceTree = "<group>"; };
 		63441B952A8A3C2C0017994F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +156,13 @@
 				63441B952A8A3C2C0017994F /* DetailViewController.swift */,
 				D1AB9A3F2A8A3D9A00EB4C56 /* ProfileViewController.swift */,
 				D14C85702A8BC79600A9216D /* Help.swift */,
+				5255439E2A90438500EBE369 /* WWDChelper.swift */,
+				525543A02A9043A700EBE369 /* WWDCcell.swift */,
+				525543A22A9043D900EBE369 /* WWDCcontroller.swift */,
+				529BA3392A904580000E0011 /* WWDC.storyboard */,
+				529BA33B2A904BE4000E0011 /* SnackList.storyboard */,
+				529BA33D2A904F57000E0011 /* SnackListController.swift */,
+				529BA33F2A9050FC000E0011 /* SnackListCellTableViewCell.swift */,
 				63523ED02A8A0EE8002C677A /* Assets.xcassets */,
 				63523ED22A8A0EE8002C677A /* LaunchScreen.storyboard */,
 				63523ED52A8A0EE8002C677A /* Info.plist */,
@@ -231,6 +252,8 @@
 				63523ED12A8A0EE8002C677A /* Assets.xcassets in Resources */,
 				D1AB9A422A8A3EAC00EB4C56 /* ProfileView.storyboard in Resources */,
 				63523ECC2A8A0EE7002C677A /* Main.storyboard in Resources */,
+				529BA33A2A904580000E0011 /* WWDC.storyboard in Resources */,
+				529BA33C2A904BE4000E0011 /* SnackList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,11 +264,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5255439F2A90438500EBE369 /* WWDChelper.swift in Sources */,
 				525543982A903F5C00EBE369 /* Categorie+CoreDataProperties.swift in Sources */,
 				63441B962A8A3C2C0017994F /* DetailViewController.swift in Sources */,
 				D1AB9A402A8A3D9A00EB4C56 /* ProfileViewController.swift in Sources */,
+				529BA33E2A904F57000E0011 /* SnackListController.swift in Sources */,
 				E50EA25E2A8DF1EA00F8FA13 /* MainCollectionViewCell.swift in Sources */,
 				D146A05F2A8F89860013121F /* ProfileTextViewDelegate.swift in Sources */,
+				525543A12A9043A700EBE369 /* WWDCcell.swift in Sources */,
 				63523EC92A8A0EE7002C677A /* ViewController.swift in Sources */,
 				525543952A903F5C00EBE369 /* MySnack+CoreDataClass.swift in Sources */,
 				520F92022A8A42A7005C8897 /* SnackCore.swift in Sources */,
@@ -255,9 +281,11 @@
 				5255439A2A903F5C00EBE369 /* MyProfile+CoreDataProperties.swift in Sources */,
 				63523ECF2A8A0EE7002C677A /* AppleSnack.xcdatamodeld in Sources */,
 				D146A0612A8F8B7E0013121F /* ProfileImagePickerDelegate.swift in Sources */,
+				529BA3402A9050FC000E0011 /* SnackListCellTableViewCell.swift in Sources */,
 				5255439D2A9040AE00EBE369 /* CategorieCore.swift in Sources */,
 				63523EC52A8A0EE7002C677A /* AppDelegate.swift in Sources */,
 				525543962A903F5C00EBE369 /* MySnack+CoreDataProperties.swift in Sources */,
+				525543A32A9043D900EBE369 /* WWDCcontroller.swift in Sources */,
 				63523EC72A8A0EE7002C677A /* SceneDelegate.swift in Sources */,
 				525543972A903F5C00EBE369 /* Categorie+CoreDataClass.swift in Sources */,
 				520F92042A8A42B3005C8897 /* ProfileCore.swift in Sources */,
