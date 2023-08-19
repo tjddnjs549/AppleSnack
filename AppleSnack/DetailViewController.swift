@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class DetailViewController: UIViewController {
 
     
@@ -18,11 +19,11 @@ final class DetailViewController: UIViewController {
     var snackManager = SnackManager.shared
     
     // 데이터 변수 -> 나오는 걸 보기 위해 선언
-    var mainTitle: String?
-    var content: String?
-    var url: String?
+    var mainTitle: String? = "asdad"
+    var content: String? = "asdad"
+    var url: String? = "asda"
     var category: String? = "클래스"
-    
+    var date: Date? = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,7 @@ final class DetailViewController: UIViewController {
     
     private func setupNaviBar() {
         
-        self.title = category
+        //self.title = category
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         
     
@@ -79,8 +80,10 @@ final class DetailViewController: UIViewController {
             writeVC.mainTitle = titleLabel.text
             writeVC.content = contextLabel.text
             writeVC.url = urlContextLabel.text
-            print(snackManager.getToDoListFromCoreData().count)
             writeVC.category = "클래스"
+            writeVC.nowDate = date
+            writeVC.mySnack = mySnack
+            print(self.date)
             // 위처럼 하면 에러발생 (스토리보드 객체가 나중에 생김)
         }
     }

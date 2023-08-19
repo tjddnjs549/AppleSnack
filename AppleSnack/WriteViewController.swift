@@ -38,7 +38,7 @@ final class WriteViewController: UIViewController {
     var content: String?
     var url: String?
     var category: String?
-    //var index: Int?
+    var nowDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,7 @@ final class WriteViewController: UIViewController {
         setupKeyboardEvent()
         
     }
+
 
     
     
@@ -78,29 +79,27 @@ final class WriteViewController: UIViewController {
     // MARK: - configureUI() (bar title , placeholder setting)
 
     private func configureUI() {
-        
-        // 기존에 데이터가 있을때
-        if let selectedSnack = snackManager.getToDoListFromCoreData().first(where: { $0.title == mainTitle }) {
-            
-            if selectedSnack.text == content {
+        print(nowDate)
+            // 기존에 데이터가 있을때
+           
+            if snackManager.getToDoListFromCoreData().first != nil {
                 
                 self.title = "수정 페이지"
                 
-                titleTextField.text = selectedSnack.title
-                contextTextView.text = selectedSnack.text
-                urlTextView.text = selectedSnack.assiURL
+                titleTextField.text = mainTitle
+                contextTextView.text = content
+                urlTextView.text = url
                 
+                // 기존데이터가 없을때
+            } else {
+                self.title = "생성 페이지"
+                
+                contextTextView.text = "내용을 입력하세요."
+                contextTextView.textColor = .lightGray
+                
+                urlTextView.text = "도움이 될 만한 주소를 입력하세요."
+                urlTextView.textColor = .lightGray
             }
-            // 기존데이터가 없을때
-        } else {
-            self.title = "생성 페이지"
-            
-            contextTextView.text = "내용을 입력하세요."
-            contextTextView.textColor = .lightGray
-            
-            urlTextView.text = "도움이 될 만한 주소를 입력하세요."
-            urlTextView.textColor = .lightGray
-        }
     }
     
   
@@ -109,6 +108,7 @@ final class WriteViewController: UIViewController {
     
     private func setupNaviBar() {
         
+        self.title = "dd"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         
     
@@ -135,17 +135,20 @@ final class WriteViewController: UIViewController {
             titleIsEmptyAlertMessage()
             return
         } else { // 빈값이 아니면 이동
-            if let mySnack = self.mySnack {
-                mySnack.title = titleTextField
-                mySnack.text = contextTextView.text
-                mySnack.assiURL = urlTextView.text
+            guard let nowDate = nowDate else { return }
+            if snackManager.getToDoListFromCoreData().first != nil {
+                mainTitle = titleTextField
+                content = contextTextView.text
+                url = urlTextView.text
+                guard let mySnack = mySnack else {return}
                 snackManager.updateToDo(newSnackData: mySnack) {
                     print("업데이트 완료")
                     // 다시 전화면으로 돌아가기 or 2번 페이지로 가기(수정 필요❗️)
                     self.navigationController?.popViewController(animated: true)
                 }
             } else {
-                snackManager.saveToDoData(title: titleTextField, text: contextTextView.text, photo: nil, categorie: "클래스", assiUrl: urlTextView.text) {
+                let now = Date()
+                snackManager.saveToDoData(title: titleTextField, text: contextTextView.text, photo: nil, categorie: "클래스", assiUrl: urlTextView.text, date: now) {
                     print("생성 완료")
                     print(titleTextField!)
                 }
@@ -157,6 +160,8 @@ final class WriteViewController: UIViewController {
                 vc.content = contextTextView.text
                 vc.url = urlTextView.text
                 vc.category = "클래스"
+                print(now)
+                vc.date = now
                 NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
                 self.navigationController?.pushViewController(vc, animated: true)
                 

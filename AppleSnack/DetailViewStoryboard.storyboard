@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Detail View Controller-->
+        <!--상세 페이지-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="DetailViewStoryboard" id="Y6W-OH-hqX" customClass="DetailViewController" customModule="AppleSnack" customModuleProvider="target" sceneMemberID="viewController">
@@ -92,7 +92,7 @@
                             <constraint firstItem="P9T-9n-OOZ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ahw-9Y-89l"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="w6z-oa-9Bi"/>
+                    <navigationItem key="navigationItem" title="상세 페이지" id="w6z-oa-9Bi"/>
                     <size key="freeformSize" width="393" height="1500"/>
                     <connections>
                         <outlet property="contextLabel" destination="4Bx-r3-Tms" id="ahy-kW-Vtc"/>
@@ -210,7 +210,7 @@
                             <constraint firstItem="S9V-M2-F4R" firstAttribute="leading" secondItem="QW2-EH-FOA" secondAttribute="leading" constant="10" id="q7A-nB-G2k"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="OWs-bI-F3e"/>
+                    <navigationItem key="navigationItem" id="wiE-Jc-QcE"/>
                     <connections>
                         <outlet property="contextTextView" destination="koY-zY-RKZ" id="1iw-qR-yJM"/>
                         <outlet property="titleTextField" destination="rMr-Ws-Kz1" id="Sbr-vt-T4X"/>

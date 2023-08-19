@@ -16,7 +16,7 @@ final class SnackManager {
     
     
     // MARK: - [Create] 코어데이터에 데이터 생성하기
-    func saveToDoData(title: String?, text: String?, photo: Data?, categorie: String?, assiUrl: String?, completion: @escaping () -> Void) {
+    func saveToDoData(title: String?, text: String?, photo: Data?, categorie: String?, assiUrl: String?, date: Date? ,completion: @escaping () -> Void) {
         if let context = context {
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
                 
