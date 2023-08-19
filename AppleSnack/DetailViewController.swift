@@ -15,12 +15,13 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var urlContextLabel: UILabel!
     
     var mySnack: MySnack?
+    var snackManager = SnackManager.shared
     
     // 데이터 변수 -> 나오는 걸 보기 위해 선언
     var mainTitle: String?
     var content: String?
     var url: String?
-    var category: String?
+    var category: String? = "클래스"
     
     
     override func viewDidLoad() {
@@ -51,15 +52,15 @@ final class DetailViewController: UIViewController {
     
     private func setupNaviBar() {
         
-        self.title = "상세 페이지"
+        self.title = category
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         
     
         
-        let doneButton = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(doneButtonTapped))
+        let updateButton = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(updateButtonTapped))
         
-        doneButton.tintColor = .orange
-        navigationItem.rightBarButtonItem = doneButton
+        updateButton.tintColor = .orange
+        navigationItem.rightBarButtonItem = updateButton
         
         let backButton = UIBarButtonItem(title: "뒤로", style: .done, target: self, action: #selector(backButtonTapped))
         
@@ -67,21 +68,22 @@ final class DetailViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
     }
     
-    @objc func doneButtonTapped() {
-        
+    @objc func updateButtonTapped() {
+        performSegue(withIdentifier: "ToWriteVC", sender: self)
         //수정 페이지 보냄
-        let storyboard = UIStoryboard(name: "WriteViewStoryboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "WriteViewStoryboard") as! WriteViewController
-        
-        vc.mainTitle = titleLabel.text
-        vc.content = contextLabel.text
-        vc.url = urlContextLabel.text
-        //vc.category = categorie
-        
-        
-        self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //print(#function)
+        if segue.identifier == "ToWriteVC" {
+            let writeVC = segue.destination as! WriteViewController
+            writeVC.mainTitle = titleLabel.text
+            writeVC.content = contextLabel.text
+            writeVC.url = urlContextLabel.text
+            print(snackManager.getSnackFromCoreData().count)
+            writeVC.category = "클래스"
+            // 위처럼 하면 에러발생 (스토리보드 객체가 나중에 생김)
+        }
+    }
     @objc func backButtonTapped() {
         //백하면 바로 셀있는 뷰로 이동
 //        guard let viewControllerStack = self.navigationController?.viewControllers else { return }

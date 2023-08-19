@@ -38,16 +38,17 @@ final class WriteViewController: UIViewController {
     var content: String?
     var url: String?
     var category: String?
-    
+    //var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNaviBar()
         configureUI()
+        setupNaviBar()
         setup()
         setupKeyboardEvent()
         
     }
+
     
     
     // MARK: - setup() 세팅 (테두리)
@@ -77,23 +78,26 @@ final class WriteViewController: UIViewController {
     // MARK: - configureUI() (bar title , placeholder setting)
 
     private func configureUI() {
-        snackManager.getToDoListFromCoreData()
-        // 기존에 데이터가 있을때
-        if let mySnack = self.mySnack {
-            self.title = "수정 페이지"
         
-            titleTextField.text = mySnack.title
-            contextTextView.text = mySnack.text
-            urlTextView.text = mySnack.assiURL
-            // category
+        // 기존에 데이터가 있을때
+        if let selectedSnack = snackManager.getSnackFromCoreData().first(where: { $0.title == mainTitle }) {
             
-        // 기존데이터가 없을때
+            if selectedSnack.text == content {
+                
+                self.title = "수정 페이지"
+                
+                titleTextField.text = selectedSnack.title
+                contextTextView.text = selectedSnack.text
+                urlTextView.text = selectedSnack.assiURL
+                
+            }
+            // 기존데이터가 없을때
         } else {
             self.title = "생성 페이지"
             
             contextTextView.text = "내용을 입력하세요."
             contextTextView.textColor = .lightGray
-
+            
             urlTextView.text = "도움이 될 만한 주소를 입력하세요."
             urlTextView.textColor = .lightGray
         }
@@ -105,7 +109,6 @@ final class WriteViewController: UIViewController {
     
     private func setupNaviBar() {
         
-        self.title = "글 추가"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         
     
@@ -136,13 +139,13 @@ final class WriteViewController: UIViewController {
                 mySnack.title = titleTextField
                 mySnack.text = contextTextView.text
                 mySnack.assiURL = urlTextView.text
-                snackManager.updateToDo(newSnackData: mySnack) {
+                snackManager.updateSnack(newSnackData: mySnack) {
                     print("업데이트 완료")
-                    // 다시 전화면으로 돌아가기
+                    // 다시 전화면으로 돌아가기 or 2번 페이지로 가기(수정 필요❗️)
                     self.navigationController?.popViewController(animated: true)
                 }
             } else {
-                snackManager.saveToDoData(title: titleTextField, text: contextTextView.text, photo: nil, categorie: "클래스", assiUrl: urlTextView.text){
+                snackManager.saveToSnack(title: titleTextField, text: contextTextView.text, categorie: "클래스", assiUrl: urlTextView.text) {
                     print("생성 완료")
                     print(titleTextField!)
                 }

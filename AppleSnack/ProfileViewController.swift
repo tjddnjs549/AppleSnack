@@ -12,7 +12,7 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let profileData = profileManager.getToDoListFromCoreData().first {
+        if let profileData = profileManager.getProfileCoreData().first {
             nameField.text = profileData.name
             githubTextView.text = profileData.github
             blogTextView.text = profileData.blog
@@ -43,7 +43,7 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
         toggleTextViewState(githubTextView, sender: sender)
         profileImage.isUserInteractionEnabled.toggle()
         
-        if let profileData = profileManager.getToDoListFromCoreData().first {
+        if let profileData = profileManager.getProfileCoreData().first {
             profileData.name = nameField.text
             profileData.github = githubTextView.text
             profileData.blog = blogTextView.text
@@ -52,7 +52,7 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
                 profileData.photo = newImage.pngData()
             }
             
-            profileManager.updateToDo(newToDoData: profileData) {}
+            profileManager.updateProfile(newToDoData: profileData) {}
         }
     }
     
