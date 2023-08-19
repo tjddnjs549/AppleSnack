@@ -63,11 +63,9 @@ class SnackListController: UIViewController {
     @objc func plusButtonTapped() {
         performSegue(withIdentifier: "writeVC", sender: nil)
     }
-    @objc func backButtonTapped() {
-        let storyboard = UIStoryboard(name: "ViewController", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        
-        self.navigationController?.pushViewController(vc, animated: true)
+    @objc func backButtonTapped() {        
+//        let vc = self.navigationController?.viewControllers.first as! ViewController
+//        self.navigationController?.popToViewController(vc, animated: true)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
