@@ -16,6 +16,7 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
             nameField.text = profileData.name
             githubTextView.text = profileData.github
             blogTextView.text = profileData.blog
+            emailField.text = profileData.email
             
             if let imageDate = profileData.photo, let image = UIImage(data: imageDate) {
                 profileImage.image = image
@@ -47,6 +48,7 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
             profileData.name = nameField.text
             profileData.github = githubTextView.text
             profileData.blog = blogTextView.text
+            profileData.email = emailField.text
             
             if let newImage = profileImage.image {
                 profileData.photo = newImage.pngData()
