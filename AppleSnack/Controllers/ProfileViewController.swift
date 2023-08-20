@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController:UIViewController, UINavigationControllerDelegate {
     let profileManager = ProfileManager.shared
+    let snackManager = SnackManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.textColor = UIColor(red: 0.48, green: 0.90, blue: 0.51, alpha: 1.00)
@@ -84,15 +86,15 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var currentValueLabelLeadingConstraint: NSLayoutConstraint!
     
+    lazy var snackArray = snackManager.getSnackFromCoreData()
     
-    
-    var dataArray: [Any] = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2] // 임시
+//    var dataArray: [Any] = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2] // 임시
     var currentValue: Float = 0.0
     var level: Int = 0
     var maxValue: Float = 100
     
     func updateProgressView() {
-        currentValue = Float(dataArray.count)
+        currentValue = Float(snackArray.count)
         let repeatedValue = currentValue.truncatingRemainder(dividingBy: maxValue)
         if repeatedValue == 0 && currentValue != 0 {
             level += 1
