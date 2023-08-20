@@ -14,7 +14,7 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     var categorie: String? {
         didSet {
-            categorieLabel.backgroundColor = .green
+            categorieLabel.backgroundColor = UIColor(red: 0.34, green: 0.80, blue: 0.60, alpha: 1.00)
             categorieLabel.text = categorie
         }
     }

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ueW-KC-H0h">
-                                <rect key="frame" x="0.0" y="147" width="393" height="622"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vwc-MC-Jgx">
                                     <size key="itemSize" width="119" height="79"/>
@@ -56,12 +56,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLi-VL-SAc">
-                                <rect key="frame" x="0.0" y="103" width="393" height="44"/>
-                                <items>
-                                    <navigationItem title="Apple Snack" id="KoK-Nq-IhV"/>
-                                </items>
-                            </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-kq-cAd">
                                 <rect key="frame" x="333" y="709" width="30" height="30"/>
                                 <subviews>
@@ -93,17 +87,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="hLi-VL-SAc" secondAttribute="bottom" constant="-44" id="2ak-ZW-Xms"/>
-                            <constraint firstItem="hLi-VL-SAc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4ka-aL-bmr"/>
-                            <constraint firstItem="hLi-VL-SAc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="B9z-Qy-XGJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ueW-KC-H0h" secondAttribute="bottom" id="CrC-A7-euN"/>
-                            <constraint firstItem="hLi-VL-SAc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EOw-UD-vRY"/>
+                            <constraint firstItem="ueW-KC-H0h" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0ve-lI-xDI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RgJ-kq-cAd" secondAttribute="trailing" constant="30" id="GNb-zL-Gad"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ueW-KC-H0h" secondAttribute="trailing" id="Kwc-Ut-ubW"/>
+                            <constraint firstItem="ueW-KC-H0h" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ai1-hg-IsD"/>
+                            <constraint firstItem="ueW-KC-H0h" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="anS-BW-5Zv"/>
+                            <constraint firstItem="ueW-KC-H0h" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="dYI-DV-pLU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RgJ-kq-cAd" secondAttribute="bottom" constant="30" id="eIX-J5-T2e"/>
-                            <constraint firstItem="ueW-KC-H0h" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hYl-oY-m8z"/>
-                            <constraint firstItem="ueW-KC-H0h" firstAttribute="top" secondItem="hLi-VL-SAc" secondAttribute="bottom" id="mN1-Cs-gDq"/>
-                            <constraint firstItem="hLi-VL-SAc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="teJ-b8-Kz0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KAt-KD-s2O"/>
@@ -180,6 +169,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n4H-WV-Anv">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.94328010080000002" green="0.77167286160000004" blue="0.2058116646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
+                        <navigationBarAppearance key="scrollEdgeAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

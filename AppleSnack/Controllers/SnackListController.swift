@@ -42,6 +42,7 @@ class SnackListController: UIViewController {
         
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "검색"
+        
         // 검색상태에서 상태창 숨김기능
         searchController.hidesNavigationBarDuringPresentation = false
         
@@ -51,10 +52,7 @@ class SnackListController: UIViewController {
         
         
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(plusButtonTapped))
-        let backButton = UIBarButtonItem(title: "뒤로", style: .done, target: self, action: #selector(backButtonTapped))
 
-        navigationItem.leftBarButtonItem = backButton
-        
         navigationItem.searchController = searchController
         navigationItem.rightBarButtonItem = button
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -66,10 +64,7 @@ class SnackListController: UIViewController {
     @objc func plusButtonTapped() {
         performSegue(withIdentifier: "writeVC", sender: nil)
     }
-    @objc func backButtonTapped() {        
-//        let vc = self.navigationController?.viewControllers.first as! ViewController
-//        self.navigationController?.popToViewController(vc, animated: true)
-    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "writeVC" {
