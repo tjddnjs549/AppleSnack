@@ -16,7 +16,7 @@ final class CategorieManager {
     
     
     // MARK: - [Create] 코어데이터에 데이터 생성하기
-    func saveCategorieData(categorie: String?, date: Date, completion: @escaping () -> Void) {
+    func saveCategorieData(categorie: String?, completion: @escaping () -> Void) {
         if let context = context {
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
                 
@@ -36,7 +36,7 @@ final class CategorieManager {
         var categorieList: [Categorie] = []
         if let context = context {
             let request = NSFetchRequest<Categorie>(entityName: self.modelName)
-            let dateOrder = NSSortDescriptor(key: "date", ascending: false)
+            let dateOrder = NSSortDescriptor(key: "date", ascending: true)
             request.sortDescriptors = [dateOrder]
             
             do {

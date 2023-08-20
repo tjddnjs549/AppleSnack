@@ -88,7 +88,7 @@ final class DetailViewController: UIViewController {
         }
     }
     @objc func backButtonTapped() {
-        let vc = self.navigationController?.viewControllers.first as! SnackListController
+        let vc = self.navigationController?.viewControllers[1] as! SnackListController
         self.navigationController?.popToViewController(vc, animated: true)
     }
 
