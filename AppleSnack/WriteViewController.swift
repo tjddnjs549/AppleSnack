@@ -138,7 +138,7 @@ final class WriteViewController: UIViewController {
                     // 다시 전화면으로 돌아가기 or 2번 페이지로 가기(수정 필요❗️)
                     let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
-                    vc.mySnack = self.snackManager.getSnackFromCoreData()[self.snackNumber]
+                    vc.mySnack = mySnack
                     
                     self.navigationController?.pushViewController(vc, animated: true)
                 }

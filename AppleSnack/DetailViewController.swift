@@ -46,7 +46,7 @@ final class DetailViewController: UIViewController {
     
     private func setupNaviBar() {
         
-        self.title = category
+        self.title = mySnack?.categorie
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         
     
