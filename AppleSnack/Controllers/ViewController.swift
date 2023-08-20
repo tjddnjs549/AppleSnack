@@ -37,7 +37,7 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "test"
         // MARK: - Lifecycles
         
         let itemSize = (UIScreen.main.bounds.width - 2) / 3
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
     }
    
     @IBAction func fixButtonTapped(_ sender: UIButton) {

@@ -96,11 +96,12 @@ final class WriteViewController: UIViewController {
                 snackManager.saveToSnack(title: titleTextField.text, text: contextTextView.text, categorie: category, assiUrl: urlTextView.text) {
                     print("생성 완료")
                     NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
-                    let storyboard = UIStoryboard(name: "SnackList", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "SnackList") as! SnackListController
+                    
+                    let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
+                    vc.mySnack = self.snackManager.getSnackFromCoreData().first
                     
                     self.navigationController?.pushViewController(vc, animated: true)
-                    
                 }
             }
         }

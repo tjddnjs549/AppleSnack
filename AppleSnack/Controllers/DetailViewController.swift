@@ -34,11 +34,11 @@ final class DetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.hidesBarsOnSwipe = true
+//        navigationController?.hidesBarsOnSwipe = true
       }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.hidesBarsOnSwipe = false
+//        navigationController?.hidesBarsOnSwipe = false
       }
 
     
