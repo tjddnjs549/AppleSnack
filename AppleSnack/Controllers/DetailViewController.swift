@@ -60,8 +60,7 @@ final class DetailViewController: UIViewController {
     
     private func setupNaviBar() {
         
-        self.title = category
-    
+        self.title = mySnack?.categorie
         
         let updateButton = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(updateButtonTapped))
         

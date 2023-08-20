@@ -88,7 +88,7 @@ final class WriteViewController: UIViewController {
                     print("업데이트 완료")
                     let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
-                    vc.mySnack = self.snackManager.getSnackFromCoreData()[self.snackNumber]
+                    vc.mySnack = mySnack
                     
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
