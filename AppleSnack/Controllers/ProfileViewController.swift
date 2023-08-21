@@ -111,10 +111,9 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
     func updateProgressView() {
         currentValue = Float(snackArray.count)
         let repeatedValue = currentValue.truncatingRemainder(dividingBy: maxValue)
-        if repeatedValue == 0 && currentValue != 0 {
-            level = Int(currentValue / maxValue)
-            levelLabel.text = "Lv: \(level)"
-        }
+
+        level = Int(currentValue / maxValue)
+        levelLabel.text = "Lv: \(level)"
         
         progressView.progress = repeatedValue / maxValue
         currentValueLabel.text = "\(Int(repeatedValue))℃"

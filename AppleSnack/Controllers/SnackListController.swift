@@ -136,6 +136,7 @@ extension SnackListController: UITableViewDelegate {
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
             self.snackManager.deleteSnack(data: snack) {
                 print("삭제됏음")
+                NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
                 self.loadSnack()
                 
                 // 서치컨트롤러에서도 삭제해주면 테이블셀의 색이 남지 않고 업데이트 된다.
