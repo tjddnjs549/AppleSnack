@@ -8,6 +8,10 @@
 import UIKit
 
 class ProfileViewController:UIViewController, UINavigationControllerDelegate {
+    
+    
+    @IBOutlet weak var profileView: UIImageView!
+    
     let profileManager = ProfileManager.shared
     let snackManager = SnackManager.shared
     
@@ -33,6 +37,13 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
         
         blogTextView.delegate = self
         githubTextView.delegate = self
+    }
+    
+    // ➡️ 이 부분 추가했습니다!!
+    override func viewDidLayoutSubviews() {
+        profileView.clipsToBounds = true
+        profileView.layer.cornerRadius = profileView.bounds.height / 2
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

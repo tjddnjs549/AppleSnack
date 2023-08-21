@@ -10,6 +10,7 @@ import UIKit // Foundation 프레임워크를 내부적으로 import하고 있�
 class ViewController: UIViewController {
     
     let categorieManager = CategorieManager.shared
+    let snackManager = SnackManager.shared
     
     fileprivate var systemImageNameArray = ["클래스", "구조체", "테스트", "일요일"]
     
@@ -34,7 +35,7 @@ class ViewController: UIViewController {
     var isShowFloating: Bool = false
     
     lazy var buttons: [UIButton] = [self.fixButton, self.deletButton]
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Categorie"
@@ -46,13 +47,18 @@ class ViewController: UIViewController {
         flowLayout.itemSize = CGSize(width: itemSize, height: itemSize)
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 1
-//        myCollectionView.collectionViewLayout = flowLayout // 기본 레이아웃으로 설정?!
+        //        myCollectionView.collectionViewLayout = flowLayout // 기본 레이아웃으로 설정?!
         
-        fixButton.backgroundColor = .green
+        deletButton.clipsToBounds = true
+        deletButton.layer.cornerRadius = 15
+        deletButton.backgroundColor = .gray
+        
         fixButton.clipsToBounds = true
         fixButton.layer.cornerRadius = 15
+        fixButton.backgroundColor = .gray
         
         floatingButton.backgroundColor = .gray
+        
         
         
         // 콜렉션 뷰에 대한 설정
@@ -65,15 +71,50 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         floatingButton.clipsToBounds = true
         floatingButton.layer.cornerRadius = floatingButton.bounds.height / 2
-        
-        print("\(floatingButton.bounds.height / 2)")
     }
-   
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        let title = "삭제를 원하시는 카테고리명을 입력해주세요"
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        
+        alert.addTextField(){ (tf) in
+            tf.placeholder = "카테고리 이름"
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let complete = UIAlertAction(title: "확인", style: .default) { (_)
+            in // 확인버튼 누를 경우 취할 행동
+            if let txt = alert.textFields?.first {
+                if txt.text?.isEmpty != true {
+                    let deleteCategorie = self.categorieManager.getCategorieData().filter { $0.categorie?.contains(txt.text!) ?? false }
+                    
+                    let deleteSnack = self.snackManager.getSnackFromCoreData().filter({ $0.categorie == (deleteCategorie.first)?.categorie})
+                    
+                    self.categorieManager.deleteCategorie(data: deleteCategorie.first!) {
+                        for snack in deleteSnack {
+                            self.snackManager.deleteSnack(data: snack) {}
+                        }
+                        self.myCollectionView.reloadData()
+                        print("카테고리 생성완료")
+                    }
+                } else {
+                    print("입력된 값이 없습니다.")
+                }
+            }
+        }
+        
+        
+        
+        alert.addAction(cancel)
+        alert.addAction(complete)
+        
+        self.present(alert, animated: true)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
-   
+    
     @IBAction func fixButtonTapped(_ sender: UIButton) {
         let title = "카테고리를 작성해주세요."
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
@@ -86,19 +127,47 @@ class ViewController: UIViewController {
         let complete = UIAlertAction(title: "확인", style: .default) { (_)
             in // 확인버튼 누를 경우 취할 행동
             if let txt = alert.textFields?.first {
-                if txt.text?.isEmpty != true {
+                let allCategorie = self.categorieManager.getCategorieData().map { $0.categorie }
+                
+                guard txt.text?.isEmpty != true else {
+                    let errorAlert = UIAlertController(title: "입력된 카테고리가 없습니다.", message: "1글자 이상 입력해주세요.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "확인", style: .default)
+                    errorAlert.addAction(okAction)
+                    self.present(errorAlert, animated: true)
+                    return
+                }
+                
+                
+                guard self.categorieManager.getCategorieData().count != 0 else {
                     self.categorieManager.saveCategorieData(categorie: txt.text) {
                         self.myCollectionView.reloadData()
                         print("카테고리 생성완료")
                     }
-                } else {
-                    print("입력된 값이 없습니다.")
+                    return
                 }
+                
+                for str in allCategorie {
+                    if txt.text == str {
+                        let errorAlert = UIAlertController(title: "중복된 카테고리가 있습니다.", message: nil, preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "확인", style: .default)
+                        errorAlert.addAction(okAction)
+                        self.present(errorAlert, animated: true)
+                        return
+                    }
+                }
+                
+                self.categorieManager.saveCategorieData(categorie: txt.text) {
+                    self.myCollectionView.reloadData()
+                    print("카테고리 생성완료")
+                    return
+                }
+            } else {
+                let errorAlert = UIAlertController(title: "입력된 카테고리가 없습니다.", message: "1글자 이상 입력해주세요.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "확인", style: .default)
+                errorAlert.addAction(okAction)
+                self.present(errorAlert, animated: true)
             }
         }
-        
-        
-        
         alert.addAction(cancel)
         alert.addAction(complete)
         
@@ -152,8 +221,8 @@ class ViewController: UIViewController {
         }
     }
 }
-    
-    
+
+
 extension ViewController: UICollectionViewDataSource {
     // 지정된 섹션에 표시할 셀의 개수를 묻는 메서드
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -173,7 +242,7 @@ extension ViewController: UICollectionViewDataSource {
         // 데이터에 따른 UI 변경
         // 라벨 설정
         cell.categorie = categorieManager.getCategorieData()[indexPath.item].categorie
-    
+        
         return cell
     }
     //        return UICollectionViewCell() // 내가 표시하고자하는 셀
@@ -195,12 +264,12 @@ extension ViewController : UICollectionViewDelegate {
             cell.contentView.backgroundColor = .green
         }
         
-//        let storyboard = UIStoryboard(name: "snackList", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "snackList") as! SnackListController
-//        vc.categorie = systemImageNameArray[indexPath.item]
+        //        let storyboard = UIStoryboard(name: "snackList", bundle: nil)
+        //        let vc = storyboard.instantiateViewController(withIdentifier: "snackList") as! SnackListController
+        //        vc.categorie = systemImageNameArray[indexPath.item]
         
         performSegue(withIdentifier: "snackList", sender: indexPath)
-//        present(vc, animated: true)
+        //        present(vc, animated: true)
         
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -209,7 +278,7 @@ extension ViewController : UICollectionViewDelegate {
             cell.contentView.backgroundColor = .systemBlue
         }
     }
-
+    
 }
 
 extension ViewController : UICollectionViewDelegateFlowLayout {
