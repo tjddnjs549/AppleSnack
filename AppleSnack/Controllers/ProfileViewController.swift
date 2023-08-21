@@ -30,15 +30,20 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
         
         makeImageLayer()
         makeTextViewLayer()
-        updateProgressView()
         
         blogTextView.delegate = self
         githubTextView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateProgressView()
         // 옵저버를 추가해서 업데이트 요청을 받음
-        NotificationCenter.default.addObserver(self, selector: #selector(requestProgressUpdate), name: NSNotification.Name( "RequestProgressUPdate"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestProgressUpdate), name: NSNotification.Name( "RequestProgressUpdate"), object: nil)
     }
     
     @objc func requestProgressUpdate() {
+        snackArray = snackManager.getSnackFromCoreData()
         updateProgressView()
     }
     
@@ -88,7 +93,6 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
     
     lazy var snackArray = snackManager.getSnackFromCoreData()
     
-//    var dataArray: [Any] = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2] // 임시
     var currentValue: Float = 0.0
     var level: Int = 0
     var maxValue: Float = 100
