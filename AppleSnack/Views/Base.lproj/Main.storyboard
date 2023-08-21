@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ueW-KC-H0h">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <rect key="frame" x="16" y="103" width="361" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vwc-MC-Jgx">
                                     <size key="itemSize" width="119" height="79"/>
@@ -87,9 +87,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ueW-KC-H0h" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0ve-lI-xDI"/>
+                            <constraint firstItem="ueW-KC-H0h" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="8CT-IT-mrO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ueW-KC-H0h" secondAttribute="trailing" constant="16" id="Cc6-uN-ijt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RgJ-kq-cAd" secondAttribute="trailing" constant="30" id="GNb-zL-Gad"/>
-                            <constraint firstItem="ueW-KC-H0h" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ai1-hg-IsD"/>
                             <constraint firstItem="ueW-KC-H0h" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="anS-BW-5Zv"/>
                             <constraint firstItem="ueW-KC-H0h" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="dYI-DV-pLU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RgJ-kq-cAd" secondAttribute="bottom" constant="30" id="eIX-J5-T2e"/>
