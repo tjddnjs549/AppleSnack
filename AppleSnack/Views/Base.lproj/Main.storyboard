@@ -13,7 +13,7 @@
         <!--Categorie-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="AppleSnack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AppleSnack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,6 +63,7 @@
                                 <items>
                                     <navigationItem title="Apple Snack" id="KoK-Nq-IhV"/>
                                 </items>
+                                <navigationBarAppearance key="scrollEdgeAppearance"/>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-kq-cAd">
                                 <rect key="frame" x="333" y="709" width="30" height="30"/>
