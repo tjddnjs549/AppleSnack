@@ -161,6 +161,7 @@
                         <outlet property="levelLabel" destination="fp0-3x-gvu" id="5eD-ZM-gfX"/>
                         <outlet property="nameField" destination="wZu-HX-gIJ" id="8FI-O7-hR1"/>
                         <outlet property="profileImage" destination="SI6-Vy-8Fi" id="XwE-ko-yDw"/>
+                        <outlet property="profileView" destination="SI6-Vy-8Fi" id="Cke-FP-Q46"/>
                         <outlet property="progressView" destination="B4u-lr-mJJ" id="Iqb-A0-Dyh"/>
                         <outlet property="titleLabel" destination="gfw-En-tAy" id="vPl-bf-ac3"/>
                     </connections>
