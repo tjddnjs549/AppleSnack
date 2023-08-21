@@ -49,11 +49,10 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateProgressView()
-        // 옵저버를 추가해서 업데이트 요청을 받음
-        NotificationCenter.default.addObserver(self, selector: #selector(requestProgressUpdate), name: NSNotification.Name( "RequestProgressUpdate"), object: nil)
+        requestProgressUpdate()
     }
     
-    @objc func requestProgressUpdate() {
+    func requestProgressUpdate() {
         snackArray = snackManager.getSnackFromCoreData()
         updateProgressView()
     }
