@@ -149,7 +149,7 @@
                             <constraint firstItem="bHb-Lo-UU8" firstAttribute="top" secondItem="kus-Qz-jNL" secondAttribute="bottom" constant="7.6699999999999999" id="zj3-Dk-JPI"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="3.circle.fill" catalog="system" id="P35-s4-spB"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.fill" catalog="system" id="P35-s4-spB"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="blogTextView" destination="bHb-Lo-UU8" id="1bn-Ce-dmP"/>
@@ -176,7 +176,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="3.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
