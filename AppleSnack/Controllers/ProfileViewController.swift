@@ -9,15 +9,19 @@ import UIKit
 
 class ProfileViewController:UIViewController, UINavigationControllerDelegate {
     let profileManager = ProfileManager.shared
+    let snackManager = SnackManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0.48, green: 0.90, blue: 0.51, alpha: 1.00)
+        titleLabel.textColor = UIColor(red: 0.48, green: 0.90, blue: 0.51, alpha: 1.00)
+        editButton.tintColor = UIColor(red: 0.48, green: 0.90, blue: 0.51, alpha: 1.00)
+        titleLabel.font = UIFont(name: "NotoSansKR-Bold", size: 24)
         
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.48, green: 0.90, blue: 0.51, alpha: 1.00)] //타이틀 색 변경
         if let profileData = profileManager.getProfileCoreData().first {
             nameField.text = profileData.name
             githubTextView.text = profileData.github
             blogTextView.text = profileData.blog
+            emailField.text = profileData.email
             
             if let imageDate = profileData.photo, let image = UIImage(data: imageDate) {
                 profileImage.image = image
@@ -38,7 +42,7 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
         updateProgressView()
     }
     
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func editButtonTapped(_ sender: UIButton) {
         toggleFieldState(nameField, sender: sender)
         toggleFieldState(emailField, sender: sender)
         toggleTextViewState(blogTextView, sender: sender)
@@ -49,6 +53,7 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
             profileData.name = nameField.text
             profileData.github = githubTextView.text
             profileData.blog = blogTextView.text
+            profileData.email = emailField.text
             
             if let newImage = profileImage.image {
                 profileData.photo = newImage.pngData()
@@ -57,6 +62,10 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
             profileManager.updateProfile(newToDoData: profileData) {}
         }
     }
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var editButton: UIButton!
     
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -77,13 +86,15 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var currentValueLabelLeadingConstraint: NSLayoutConstraint!
     
-    var dataArray: [Any] = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2] // 임시
+    lazy var snackArray = snackManager.getSnackFromCoreData()
+    
+//    var dataArray: [Any] = [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2] // 임시
     var currentValue: Float = 0.0
     var level: Int = 0
     var maxValue: Float = 100
     
     func updateProgressView() {
-        currentValue = Float(dataArray.count)
+        currentValue = Float(snackArray.count)
         let repeatedValue = currentValue.truncatingRemainder(dividingBy: maxValue)
         if repeatedValue == 0 && currentValue != 0 {
             level += 1
@@ -97,23 +108,23 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
         currentValueLabelLeadingConstraint.constant = progressView.bounds.width * ratio
     }
     
-    func toggleFieldState(_ field: UITextField, sender: UIBarButtonItem) {
+    func toggleFieldState(_ field: UITextField, sender: UIButton) {
         field.isEnabled.toggle()
         
         if field.isEnabled {
-            sender.title = "완료"
+            sender.setTitle("완료", for: .normal)
         } else {
-            sender.title = "수정"
+            sender.setTitle("수정", for: .normal)
         }
     }
     
-    func toggleTextViewState(_ textView: UITextView, sender: UIBarButtonItem) {
+    func toggleTextViewState(_ textView: UITextView, sender: UIButton) {
         textView.isEditable.toggle()
         
         if textView.isEditable {
-            sender.title = "완료"
+            sender.setTitle("완료", for: .normal)
         } else {
-            sender.title = "수정"
+            sender.setTitle("수정", for: .normal)
         }
     }
 }

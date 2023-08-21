@@ -52,7 +52,7 @@ final class WriteViewController: UIViewController {
             contextTextView.text = "내용을 입력하세요."
             contextTextView.textColor = .lightGray
             
-            urlTextView.text = "도움이 될 만한 주소를 입력하세요."
+            urlTextView.text = "내용을 입력하세요."
             urlTextView.textColor = .lightGray
         }
     }
@@ -88,7 +88,7 @@ final class WriteViewController: UIViewController {
                     print("업데이트 완료")
                     let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
-                    vc.mySnack = self.snackManager.getSnackFromCoreData()[self.snackNumber]
+                    vc.mySnack = mySnack
                     
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -96,11 +96,12 @@ final class WriteViewController: UIViewController {
                 snackManager.saveToSnack(title: titleTextField.text, text: contextTextView.text, categorie: category, assiUrl: urlTextView.text) {
                     print("생성 완료")
                     NotificationCenter.default.post(name: NSNotification.Name("RequestProgressUpdate"), object: nil)
-                    let storyboard = UIStoryboard(name: "SnackList", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "SnackList") as! SnackListController
+                    
+                    let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewStoryboard") as! DetailViewController
+                    vc.mySnack = self.snackManager.getSnackFromCoreData().first
                     
                     self.navigationController?.pushViewController(vc, animated: true)
-                    
                 }
             }
         }

@@ -29,17 +29,7 @@ final class DetailViewController: UIViewController {
         setupNaviBar()
         configureUI()
         contextLabel.textAlignment = .justified
-    }
-    
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.hidesBarsOnSwipe = true
-      }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.hidesBarsOnSwipe = false
-      }
+    }    
 
     
     // MARK: - configureUI 세팅
@@ -60,8 +50,7 @@ final class DetailViewController: UIViewController {
     
     private func setupNaviBar() {
         
-        self.title = category
-    
+        self.title = mySnack?.categorie
         
         let updateButton = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(updateButtonTapped))
         
@@ -88,7 +77,7 @@ final class DetailViewController: UIViewController {
         }
     }
     @objc func backButtonTapped() {
-        let vc = self.navigationController?.viewControllers.first as! SnackListController
+        let vc = self.navigationController?.viewControllers[1] as! SnackListController
         self.navigationController?.popToViewController(vc, animated: true)
     }
 

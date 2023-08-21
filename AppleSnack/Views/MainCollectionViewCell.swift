@@ -8,5 +8,17 @@
 import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var mainCollectionViewCell: UILabel!
+    
+    
+    @IBOutlet weak var categorieLabel: UILabel!
+    
+    var categorie: String? {
+        didSet {
+            categorieLabel.backgroundColor = UIColor(red: 0.34, green: 0.80, blue: 0.60, alpha: 1.00)
+            categorieLabel.text = categorie
+        }
+    }
+    
+    
+    
 }

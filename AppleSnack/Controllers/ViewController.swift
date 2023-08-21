@@ -9,6 +9,8 @@ import UIKit // Foundation 프레임워크를 내부적으로 import하고 있�
 
 class ViewController: UIViewController {
     
+    let categorieManager = CategorieManager.shared
+    
     fileprivate var systemImageNameArray = ["클래스", "구조체", "테스트", "일요일"]
     
     @IBOutlet weak var myCollectionView: UICollectionView!
@@ -35,21 +37,58 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "test"
         // MARK: - Lifecycles
         
+        let itemSize = (UIScreen.main.bounds.width - 2) / 3
         // Layout 간격 설정
         let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 100, height: 50)
+        flowLayout.itemSize = CGSize(width: itemSize, height: itemSize)
+        flowLayout.minimumLineSpacing = 1
+        flowLayout.minimumInteritemSpacing = 1
 //        myCollectionView.collectionViewLayout = flowLayout // 기본 레이아웃으로 설정?!
         
         
         // 콜렉션 뷰에 대한 설정
+        myCollectionView.collectionViewLayout = flowLayout
         myCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+   
+    @IBAction func fixButtonTapped(_ sender: UIButton) {
+        let title = "카테고리를 작성해주세요."
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         
+        alert.addTextField(){ (tf) in
+            tf.placeholder = "카테고리 이름"
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let complete = UIAlertAction(title: "확인", style: .default) { (_)
+            in // 확인버튼 누를 경우 취할 행동
+            if let txt = alert.textFields?.first {
+                if txt.text?.isEmpty != true {
+                    self.categorieManager.saveCategorieData(categorie: txt.text) {
+                        self.myCollectionView.reloadData()
+                        print("카테고리 생성완료")
+                    }
+                } else {
+                    print("입력된 값이 없습니다.")
+                }
+            }
+        }
+        
+        
+        
+        alert.addAction(cancel)
+        alert.addAction(complete)
+        
+        self.present(alert, animated: true)
     }
     
     @IBAction func floatingButtonAction(_ sender: UIButton) {
@@ -104,7 +143,7 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDataSource {
     // 지정된 섹션에 표시할 셀의 개수를 묻는 메서드
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.systemImageNameArray.count // 내가 표시할 컬렉션뷰의 개수
+        return self.categorieManager.getCategorieData().count // 내가 표시할 컬렉션뷰의 개수
         
     }
     
@@ -115,16 +154,12 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
         
         // 배경화면
-        cell.contentView.backgroundColor = UIColor.systemBlue
-        cell.contentView.layer.cornerRadius = 25
-        cell.contentView.layer.borderWidth = 1
+        
         
         // 데이터에 따른 UI 변경
         // 라벨 설정
-        cell.mainCollectionViewCell.text = self.systemImageNameArray[indexPath.item]
-        
-        
-        
+        cell.categorie = categorieManager.getCategorieData()[indexPath.item].categorie
+    
         return cell
     }
     
@@ -133,26 +168,27 @@ extension ViewController: UICollectionViewDataSource {
 
 
 extension ViewController : UICollectionViewDelegate {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "snackList" {
+            let listVC = segue.destination as! SnackListController
+            
+            guard let number = sender as? IndexPath else { return }
+            listVC.listCategorie = categorieManager.getCategorieData()[number.item].categorie!
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) {
             cell.contentView.backgroundColor = .green
-            
-            // 셀을 선택했을 때 호출해서 페이지 전환
-//            switch indexPath.item {
-//            // 첫 번째 셀 선택 시, 다른 페이지로 이동하는 동작
-//
-//            case 0:
-//                let nextpageController = NextPageViewController() // 이동할 뷰 컨트롤러 인스턴스 생성
-//                navigationController?.pushViewController(nextpageController, animated: true)
-//
-//            case 1:
-//                // 두 번째 셀 선택 시, 다른 페이지로 이동하는 동작을 구현
-//
-//            default:
-            
-//                break
-//            }
         }
+        
+//        let storyboard = UIStoryboard(name: "snackList", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "snackList") as! SnackListController
+//        vc.categorie = systemImageNameArray[indexPath.item]
+        
+        performSegue(withIdentifier: "snackList", sender: indexPath)
+//        present(vc, animated: true)
+        
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         // 선택 해제된 셀의 배경색을 원래대로 되돌립니다.
@@ -162,5 +198,3 @@ extension ViewController : UICollectionViewDelegate {
     }
 
 }
-
-//
