@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         // Layout 간격 설정
         let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: itemSize, height: itemSize)
-        flowLayout.minimumLineSpacing = 1
+        flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 1
 //        myCollectionView.collectionViewLayout = flowLayout // 기본 레이아웃으로 설정?!
         
@@ -162,7 +162,6 @@ extension ViewController: UICollectionViewDataSource {
     
         return cell
     }
-    
     //        return UICollectionViewCell() // 내가 표시하고자하는 셀
 }
 
@@ -197,4 +196,10 @@ extension ViewController : UICollectionViewDelegate {
         }
     }
 
+}
+
+extension ViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
 }
