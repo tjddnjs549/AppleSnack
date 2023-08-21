@@ -57,12 +57,13 @@
                                 </cells>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-kq-cAd">
-                                <rect key="frame" x="333" y="709" width="30" height="30"/>
+                                <rect key="frame" x="333" y="715" width="30" height="24"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rN-KM-hsF">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="5"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="수정"/>
+                                        <state key="normal" title="추가"/>
                                         <connections>
                                             <action selector="fixButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P0a-yy-dsn"/>
                                         </connections>
@@ -73,10 +74,13 @@
                                         <state key="normal" title="삭제"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdw-NX-vaI">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <color key="backgroundColor" red="0.94328010080000002" green="0.77167286160000004" blue="0.2058116646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="24"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="편집"/>
+                                        <state key="normal" title="EDIT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="floatingButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eit-m9-kkG"/>
                                         </connections>
@@ -127,8 +131,11 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="r1u-61-SU2">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tabBarAppearance>
                     </tabBar>
                     <connections>
                         <segue destination="b2U-1V-XaC" kind="relationship" relationship="viewControllers" id="HfD-xd-CVU"/>
@@ -164,7 +171,7 @@
         <scene sceneID="kcA-It-ilZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b2U-1V-XaC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Categorie" image="1.circle.fill" catalog="system" id="MYF-y1-E4I"/>
+                    <tabBarItem key="tabBarItem" title="Categorie" image="book.circle.fill" catalog="system" id="MYF-y1-E4I"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n4H-WV-Anv">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -185,7 +192,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="book.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

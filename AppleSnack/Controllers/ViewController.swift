@@ -37,7 +37,7 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "test"
+        title = "Categorie"
         // MARK: - Lifecycles
         
         let itemSize = (UIScreen.main.bounds.width - 2) / 3
@@ -48,6 +48,12 @@ class ViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 1
 //        myCollectionView.collectionViewLayout = flowLayout // 기본 레이아웃으로 설정?!
         
+        fixButton.backgroundColor = .green
+        fixButton.clipsToBounds = true
+        fixButton.layer.cornerRadius = 15
+        
+        floatingButton.backgroundColor = .gray
+        
         
         // 콜렉션 뷰에 대한 설정
         myCollectionView.collectionViewLayout = flowLayout
@@ -55,6 +61,14 @@ class ViewController: UIViewController {
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
     }
+    
+    override func viewDidLayoutSubviews() {
+        floatingButton.clipsToBounds = true
+        floatingButton.layer.cornerRadius = floatingButton.bounds.height / 2
+        
+        print("\(floatingButton.bounds.height / 2)")
+    }
+   
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
