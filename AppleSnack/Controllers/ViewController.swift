@@ -37,16 +37,22 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "test"
+        title = "Categorie"
         // MARK: - Lifecycles
         
         let itemSize = (UIScreen.main.bounds.width - 2) / 3
         // Layout 간격 설정
         let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: itemSize, height: itemSize)
-        flowLayout.minimumLineSpacing = 1
+        flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 1
 //        myCollectionView.collectionViewLayout = flowLayout // 기본 레이아웃으로 설정?!
+        
+        fixButton.backgroundColor = .green
+        fixButton.clipsToBounds = true
+        fixButton.layer.cornerRadius = 15
+        
+        floatingButton.backgroundColor = .gray
         
         
         // 콜렉션 뷰에 대한 설정
@@ -55,6 +61,14 @@ class ViewController: UIViewController {
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
     }
+    
+    override func viewDidLayoutSubviews() {
+        floatingButton.clipsToBounds = true
+        floatingButton.layer.cornerRadius = floatingButton.bounds.height / 2
+        
+        print("\(floatingButton.bounds.height / 2)")
+    }
+   
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -162,7 +176,6 @@ extension ViewController: UICollectionViewDataSource {
     
         return cell
     }
-    
     //        return UICollectionViewCell() // 내가 표시하고자하는 셀
 }
 
@@ -197,4 +210,10 @@ extension ViewController : UICollectionViewDelegate {
         }
     }
 
+}
+
+extension ViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
 }

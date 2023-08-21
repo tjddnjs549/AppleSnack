@@ -97,6 +97,11 @@ extension SnackListController: UITableViewDataSource {
         cell.cellLabel.text = isEditMode ?
         searchResult[indexPath.row].title : mySnack.filter({ $0.categorie == listCategorie})[indexPath.row].title
         
+        cell.dataLabel.text = isEditMode ?
+        searchResult[indexPath.row].dateString : mySnack.filter({ $0.categorie == listCategorie})[indexPath.row].dateString
+        
+        cell.snackTextLabel.text = isEditMode ?
+        searchResult[indexPath.row].text : mySnack.filter({ $0.categorie == listCategorie})[indexPath.row].text
         //❗️이쪽 추가 -> 색 조정
         cell.cellView.backgroundColor = UIColor(red: 0.34, green: 0.80, blue: 0.60, alpha: 1.00)
         return cell
@@ -106,9 +111,9 @@ extension SnackListController: UITableViewDataSource {
 }
 
 extension SnackListController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+               return UITableView.automaticDimension
+        }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "DetailViewStoryboard", bundle: nil)

@@ -22,6 +22,8 @@ final class AppNavigationBarAppearance: UIViewController {
         navigationBarAppearance.titleTextAttributes = attributes
         
         navigationBarAppearance.shadowColor = .none
+
+        
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
     }
