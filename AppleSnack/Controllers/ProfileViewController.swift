@@ -112,7 +112,7 @@ class ProfileViewController:UIViewController, UINavigationControllerDelegate {
         currentValue = Float(snackArray.count)
         let repeatedValue = currentValue.truncatingRemainder(dividingBy: maxValue)
         if repeatedValue == 0 && currentValue != 0 {
-            level += 1
+            level = Int(currentValue / maxValue)
             levelLabel.text = "Lv: \(level)"
         }
         
