@@ -35,7 +35,6 @@ class SnackListCellTableViewCell: UITableViewCell {
         snackTextLabel.textColor = cellLabel.textColor
         snackTextLabel.clipsToBounds = true
         snackTextLabel.layer.cornerRadius = 3
-//        snackTextLabel.backgroundColor = UIColor(red: 0.34, green: 0.76, blue: 0.60, alpha: 1.00)
         
         
     }
