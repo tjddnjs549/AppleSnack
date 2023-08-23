@@ -90,6 +90,16 @@ class ViewController: UIViewController {
                     
                     let deleteSnack = self.snackManager.getSnackFromCoreData().filter({ $0.categorie == (deleteCategorie.first)?.categorie})
                     
+                    let allCategorie = self.categorieManager.getCategorieData().map { $0.categorie }
+                    
+                    guard deleteCategorie.count != 0 else {
+                        let errorAlert = UIAlertController(title: "일치하는 카테고리가 없습니다.", message: nil, preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "확인", style: .default)
+                        errorAlert.addAction(okAction)
+                        self.present(errorAlert, animated: true)
+                        return
+                    }
+                    
                     self.categorieManager.deleteCategorie(data: deleteCategorie.first!) {
                         for snack in deleteSnack {
                             self.snackManager.deleteSnack(data: snack) {}
@@ -98,11 +108,9 @@ class ViewController: UIViewController {
                         print("카테고리 생성완료")
                     }
                 } else {
-                    print("입력된 값이 없습니다.")
                 }
             }
         }
-        
         
         
         alert.addAction(cancel)

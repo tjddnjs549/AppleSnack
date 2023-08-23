@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="1500"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Mt-Ku-lCo">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="495"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="375"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁ" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlF-fL-AN1">
                                                 <rect key="frame" x="10" y="60.000000000000007" width="344.33333333333331" height="98.666666666666686"/>
@@ -47,13 +47,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL 주소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEW-B9-tLV">
-                                                <rect key="frame" x="10" y="381" width="373" height="37.666666666666686"/>
+                                                <rect key="frame" x="10" y="261" width="373" height="37.666666666666686"/>
                                                 <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.naver.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQl-ar-bj5">
-                                                <rect key="frame" x="10" y="428.66666666666669" width="134.66666666666666" height="26.333333333333314"/>
+                                                <rect key="frame" x="10" y="308.66666666666669" width="134.66666666666666" height="26.333333333333314"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                 </accessibility>
@@ -65,7 +65,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="tEW-B9-tLV" firstAttribute="leading" secondItem="0Mt-Ku-lCo" secondAttribute="leading" constant="10" id="51X-K6-Mm1"/>
-                                            <constraint firstItem="tEW-B9-tLV" firstAttribute="top" secondItem="4Bx-r3-Tms" secondAttribute="bottom" constant="160" id="ETp-Zk-Uhx"/>
+                                            <constraint firstItem="tEW-B9-tLV" firstAttribute="top" secondItem="4Bx-r3-Tms" secondAttribute="bottom" constant="40" id="ETp-Zk-Uhx"/>
                                             <constraint firstItem="XQl-ar-bj5" firstAttribute="top" secondItem="tEW-B9-tLV" secondAttribute="bottom" constant="10" id="H6H-RV-cCU"/>
                                             <constraint firstItem="qlF-fL-AN1" firstAttribute="leading" secondItem="0Mt-Ku-lCo" secondAttribute="leading" constant="10" id="PtR-Nf-pC9"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Bx-r3-Tms" secondAttribute="trailing" constant="10" id="Qt9-xo-kYo"/>
@@ -147,10 +147,10 @@
                                 </constraints>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="koY-zY-RKZ">
-                                <rect key="frame" x="10" y="240" width="373" height="275"/>
+                                <rect key="frame" x="10" y="240" width="373" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="275" id="1N2-we-eWT"/>
+                                    <constraint firstAttribute="height" constant="200" id="1N2-we-eWT"/>
                                 </constraints>
                                 <string key="text">2023-08-16 22:56:20.415771+0900 AppleSnack[19193:594042] [HardwareKeyboard] -[UIApplication getKeyboardDevicePropertiesForSenderID:shouldUpdate:usingSyntheticEvent:], failed to fetch device property for senderID (778835616971358209) use primary keyboard info instead.
 2023-08-16 22:56:20.416720+0900 AppleSnack[19193:594042] [HardwareKeyboard] -[UIApplication getKeyboardDevicePropertiesForSenderID:shouldUpdate:usingSyntheticEvent:], failed to fetch device property for senderID (778835616971358209) use primary keyboard info instead.
@@ -160,7 +160,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Czm-BC-yW1">
-                                <rect key="frame" x="10" y="555" width="373" height="131.66666666666663"/>
+                                <rect key="frame" x="10" y="480.00000000000006" width="373" height="131.66666666666669"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도움되는 URL 주소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oa6-LC-bHg">
                                         <rect key="frame" x="0.0" y="0.0" width="239.66666666666666" height="43.666666666666664"/>
