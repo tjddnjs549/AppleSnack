@@ -17,7 +17,7 @@
 
 ##  와이어 프레임
 
-<img width="688" alt="스크린샷 2023-08-20 오후 4 54 58" src="https://github.com/tjddnjs549/git_practice/assets/82648421/3363f3b6-cb7c-4122-b665-7f6c81a2baa3">
+<img width="700" alt="image" src="https://github.com/tjddnjs549/AppleSnack/assets/82648421/46c904ec-c478-4800-88f0-9552b35fdd82">
 
 
 ##  팀 규칙
@@ -48,13 +48,19 @@
 ## 실제 화면
 
 - 모음 1
-<img width="1407" alt="페이지 모음1" src="https://github.com/tjddnjs549/git_practice/assets/82648421/59c7468a-f21b-433a-9aaf-e54ede3f343f">
+  
+<img width="1058" alt="image" src="https://github.com/tjddnjs549/AppleSnack/assets/82648421/71909d8c-044a-4a6a-92c3-b60c0c53c835">
+
 
 - 모음 2
-<img width="1424" alt="페이지 모음 2" src="https://github.com/tjddnjs549/git_practice/assets/82648421/3b41a7e3-3c39-4aa0-8ae5-8bc014009bae">
+  
+- <img width="1058" alt="image" src="https://github.com/tjddnjs549/AppleSnack/assets/82648421/e81248cc-83b4-4b7d-8187-0c9719cbf9d0">
+
 
 - 모음 3
-<img width="1049" alt="페이지 모음 3" src="https://github.com/tjddnjs549/git_practice/assets/82648421/3be9578e-01ca-4fad-b153-00fa9ce4c10b">
+  
+<img width="800" alt="image" src="https://github.com/tjddnjs549/AppleSnack/assets/82648421/23b038ef-d7f7-41e1-b16c-c73f6223e80e">
+
 
 
 ##  시연 영상
