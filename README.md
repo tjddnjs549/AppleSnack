@@ -54,7 +54,7 @@
 
 - 모음 2
   
-- <img width="1058" alt="image" src="https://github.com/tjddnjs549/AppleSnack/assets/82648421/e81248cc-83b4-4b7d-8187-0c9719cbf9d0">
+ <img width="1058" alt="image" src="https://github.com/tjddnjs549/AppleSnack/assets/82648421/e81248cc-83b4-4b7d-8187-0c9719cbf9d0">
 
 
 - 모음 3
